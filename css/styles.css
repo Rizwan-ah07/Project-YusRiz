@@ -1,3 +1,32 @@
 body{
     background-color: rgb(211, 159, 17);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+    text-align: center;
+}
+
+article {
+
+    margin-left: auto;
+    border: solid 2px red;
+
+}
+article {
+    align-items: end;
+    border: solid 2px red;
+
+}
+section{
+    border: solid 2px white;
+    padding: 10px;
+}
+button{
+    cursor: pointer;
+    border: solid 2px red;
+    background-color: aqua;
+}
+button:hover{
+    background-color: rgb(15, 58, 58);
+
 }
