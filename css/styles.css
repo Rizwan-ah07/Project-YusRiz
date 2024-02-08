@@ -1,11 +1,16 @@
 body{
     background-color: rgb(211, 159, 17);
     display: grid;
-    grid-template-columns: 1fr 1fr ;
+    grid-template-areas: 1fr 1fr ;
     gap: 5px;
     text-align: center;
 }
-
+main{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80vw;
+    margin: auto;
+}
 article {
     margin-left: auto;
     border: solid 2px red;
@@ -14,12 +19,13 @@ article {
 article {
     align-items: end;
     border: solid 2px red;
-
 }
 section{
     border: solid 3px white;
     padding: 10px;
     margin-top: 100px;
+    width: 40%;
+    margin-right: auto;
 }
 button{
     cursor: pointer;
@@ -36,4 +42,13 @@ ul{
 h3{
     border: solid 2px wheat;
     background-color: rgb(208, 55, 55);
+}
+figure{
+    width: 200px;
+    border: solid 3px red;
+    background-color: azure;
+    margin: auto;
+}
+img{
+    width: 100%;
 }
