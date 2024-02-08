@@ -1,13 +1,12 @@
 body{
     background-color: rgb(211, 159, 17);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
     gap: 5px;
     text-align: center;
 }
 
 article {
-
     margin-left: auto;
     border: solid 2px red;
 
@@ -18,8 +17,9 @@ article {
 
 }
 section{
-    border: solid 2px white;
+    border: solid 3px white;
     padding: 10px;
+    margin-top: 100px;
 }
 button{
     cursor: pointer;
@@ -29,4 +29,11 @@ button{
 button:hover{
     background-color: rgb(15, 58, 58);
 
+}
+ul{
+    border: solid 2px red;
+}
+h3{
+    border: solid 2px wheat;
+    background-color: rgb(208, 55, 55);
 }
