@@ -52,3 +52,20 @@ figure{
 img{
     width: 100%;
 }
+
+
+
+
+nav ul{
+    color: rgb(255, 25, 25);
+    text-align: center;
+    border: solid 4px;
+    background-color: rgb(76, 76, 232);
+}
+nav ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+nav ul li a {
+    text-align: center;
+}
