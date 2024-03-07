@@ -15,9 +15,6 @@ main{
 article {
     margin-left: auto;
     border: solid 2px red;
-
-}
-article {
     align-items: end;
     border: solid 2px red;
 }
@@ -52,9 +49,6 @@ figure{
 img{
     width: 100%;
 }
-
-
-
 
 nav ul{
     color: rgb(255, 25, 25);
