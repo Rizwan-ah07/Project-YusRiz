@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/script.js"></script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
 </head>
 <body>
     <header>
@@ -14,27 +15,33 @@
                 <img src="assets/pokeverse_logo.png" alt="">
             </a>
         </figure>
-        <nav id="nav">
-            <ul>
-                <li>
-                    <a href="filer.html"> <p>Pokémon filer</p></a>
-                </li>
-                <li>
-                    <a href="index.html">Pokémon vergelijken</a>
-                </li>
-                <li>
-                    <a href="quespokémon.html">Pokémon raden</a>
-                </li>
-                <li>
-                    <a href="Pokémons.html">My Pokémons</a>
-                </li>
-                <li>
-                    <a href="Pokémon_Catch.html">Pokémon vangen</a>
-                </li>
-            </ul>
-        </nav>
+        <article>
+            <button class="hamburger-button"onclick="toggleMenu()"> ☰ Menu</button>
+            <nav id="nav">
+                <ul>
+                    <li>
+                        <a href="filer.html"> <p>Pokémon filer</p></a>
+                    </li>
+                    <li>
+                        <a href="compare.html">Pokémon vergelijken</a>
+                    </li>
+                    <li>
+                        <a href="quespokémon.html">Pokémon raden</a>
+                    </li>
+                    <li>
+                        <a href="Pokémons.html">My Pokémons</a>
+                    </li>
+                    <li>
+                        <a href="Pokémon_Catch.html">Pokémon vangen</a>
+                    </li>
+                </ul>
+            </nav>
+        </article>
+        <article id="pg_name">
+            <h1>My Pokémons</h1>
+        </article>
     </header>
-    <main>
+    <main id="pg_comp">
         <section>
             <article>
                 <figure><img src="" alt=""></figure>
@@ -73,4 +80,8 @@
         </section>
     </main>
 </body>
+<footer>
+    &copy Yus(Riz)<sup>2</sup>
+    <span id ="year"></span>
+</footer>
 </html>
