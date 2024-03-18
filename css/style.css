@@ -352,6 +352,15 @@ width: 100%;
     background-color: #FBA834;
     box-shadow: #2C3740 5px 0px 10px;
 }
+
+.higherStat {
+    color: green;
+}
+
+.lowerStat {
+    color: red;
+}
+
 .selectForm{
     width: 60%;
     border-radius: 50px;

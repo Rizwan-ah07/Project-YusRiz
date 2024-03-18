@@ -50,3 +50,24 @@ document.addEventListener('DOMContentLoaded', function() {
         catchPopup.style.display = 'none';
     });
 });
+
+// higher stats and lower stats
+document.addEventListener('DOMContentLoaded', function () {
+    const statsTypes = ['hp', 'attack', 'defense', 'spAtk', 'spDef', 'speed'];
+
+    statsTypes.forEach(statType => {
+        const entity1Stat = document.querySelector(`#entity1Stats .stat-value[data-stat-type="${statType}"]`);
+        const entity2Stat = document.querySelector(`#entity2Stats .stat-value[data-stat-type="${statType}"]`);
+
+        const value1 = parseInt(entity1Stat.textContent, 10);
+        const value2 = parseInt(entity2Stat.textContent, 10);
+
+        if (value1 > value2) {
+            entity1Stat.classList.add('higherStat');
+            entity2Stat.classList.add('lowerStat');
+        } else if (value1 < value2) {
+            entity1Stat.classList.add('lowerStat');
+            entity2Stat.classList.add('higherStat');
+        }
+    });
+});
