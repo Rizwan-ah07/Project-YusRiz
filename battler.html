@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js" ></script>
-    <title>Vergelijken</title>
+    <title>Vechten</title>
 </head>
 <body class="mainSitePages" id="comparePage">
     <header>
@@ -38,65 +38,42 @@
         </nav>
     </aside>
     <main class="mainMain">
-        <h1>Pokemon Vergelijken</h1>
+        <h1>Pokemon Vechten</h1>
     <section class="mainarea">
-        <section class="leftSection compareSection">
-            <form class="selectForm">
-                <select name="lefSelect">
-                    <option value="option1">Pokemon Kiezen</option>
-                    <option value="option2">Pikachu</option>
-                </select>
-            </form>
-            <figure class="comparImage">
-                <img src="assets/compare2.gif" alt="pokemon2">
-            </figure>
-            <article class="compareInfo">
-                <div class="compareInfoDiv">
-                    <h2 class="silverUnderline">Pokemon type</h2>
-                    <p class="silverUnderlineInfo">Electric</p>
-                    <h2 class="silverUnderline">Pokemon ability</h2>
-                    <p class="silverUnderlineInfo">Lightning strike</p>
-                </div>
-                <h2 class="silverUnderline">Pokemon stats</h2>
-                <ul class="stats-list silverUnderlineInfo" >
-                    <li><span class="stat-label">HP:</span> <span class="stat-value">90</span></li>
-                    <li><span class="stat-label">Attack:</span> <span class="stat-value">55</span></li>
-                    <li><span class="stat-label">Defense:</span> <span class="stat-value">40</span></li>
-                    <li><span class="stat-label">Sp. Atk:</span> <span class="stat-value">50</span></li>
-                    <li><span class="stat-label">Sp. Def:</span> <span class="stat-value">50</span></li>
-                    <li><span class="stat-label">Speed:</span> <span class="stat-value">90</span></li>
-                </ul>
-            </article>
-        </section>
-        <section class="rightSection compareSection">
-            <form class="selectForm">
+        <section class="leftSectionBattle battleSection">
+            <form class="selectFormBattle">
                 <select name="leftSelect">
                     <option value="option1">Pokemon Kiezen</option>
                     <option value="option2">Pikachu</option>
                 </select>
             </form>
-            <figure class="comparImage">
+            <figure class="battleImage">
                 <img src="assets/compare2.gif" alt="pokemon2">
             </figure>
-            <article class="compareInfo">
-                <div class="compareInfoDiv">
-                    <h2 class="silverUnderline">Pokemon type</h2>
-                    <p class="silverUnderlineInfo">Electric</p>
-                    <h2 class="silverUnderline">Pokemon ability</h2>
-                    <p class="silverUnderlineInfo">Lightning strike</p>
-                </div>
+            <article class="battleInfo"> 
                 <h2 class="silverUnderline">Pokemon stats</h2>
-                <ul class="stats-list silverUnderlineInfo" >
-                    <li><span class="stat-label">HP:</span> <span class="stat-value">90</span></li>
-                    <li><span class="stat-label">Attack:</span> <span class="stat-value">55</span></li>
-                    <li><span class="stat-label">Defense:</span> <span class="stat-value">40</span></li>
-                    <li><span class="stat-label">Sp. Atk:</span> <span class="stat-value">50</span></li>
-                    <li><span class="stat-label">Sp. Def:</span> <span class="stat-value">50</span></li>
-                    <li><span class="stat-label">Speed:</span> <span class="stat-value">90</span></li>
-                </ul>
+                <p>HP: <span class="battleHpLevel">100HP</span></p>
+            </article>
+        </section>
+        <section class="rightSectionBattle battleSection">
+            <form class="selectFormBattle">
+                <select name="leftSelectBattle">
+                    <option value="option1">Pokemon Kiezen</option>
+                    <option value="option2">Pikachu</option>
+                </select>
+            </form>
+            <figure class="battleImage">
+                <img src="assets/compare2.gif" alt="pokemon2">
+            </figure>
+            <article class="battleInfo">
+                <h2 class="silverUnderline">Pokemon stats</h2>
+                <p>HP: <span class="battleHpLevel">100HP</span></p>
             </article>
         </section>
     </section>
+    <article class="fightButton">
+        <button class="battleButton">Vecht!!!</button>
+    </article>
 </main>
     <footer>
         <p>&copy; <span id="currentYear"></span> Pokeverse. Alle rechten voorbehouden.</p>
