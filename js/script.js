@@ -60,8 +60,13 @@ function checkPokemon() {
         document.getElementById('correctAnswers').textContent++;
         fetchRandomPokemonImage(); 
         document.getElementById('input').value = ''; 
+
+
     } else {
         document.getElementById('incorrectAnswers').textContent++;
         fetchRandomPokemonImage(); 
     }
+
+
+
 }
