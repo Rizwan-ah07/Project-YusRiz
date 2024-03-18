@@ -1,174 +1,1550 @@
 body{
-    font-family: "Poppins", sans-serif;
-    background-color: #164863;
-    display: grid;
-    grid-template-areas: 1fr 1fr ;
-    gap: 5px;
-    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    width: 100vw;
+    overflow-x: hidden;
 }
 
-#pg_comp{
+/*index page*/
+/*index page*/
+/*index page*/
+
+.indexPageBody{    
+    background-color: #164863;
+}
+.indexPageBody header figure{
+    width: 150px;
+    margin: 10px auto 10px auto;
+    }
+
+.indexPageBody header figure img{
+width: 100%;
+}
+.indexPageBody section{
     display: flex;
     flex-wrap: wrap;
-    width: 60vw;
-    margin-left: 22.5%;
-    margin-bottom: 3%;
-    gap: 5%;
-}
-
-
-
-article {
-    margin-left: auto;
-    align-items: end;
-}
-
-
-section{
-    padding: 10px;
-    margin-top: 100px;
-    width: 40%;
-    border: solid 4px gold;
-
-    background-color: #427393;
-}
-button{
-    cursor: pointer;
-    background-color: #164863;
-    color: white;
-    padding: 10px;
-    margin: 5px 0;
-}
-button:hover{
-    background-color: #0e2d3d;
-
-}
-
-h3{
-    background-color: #164863;
-    color: white;
-    padding: 10px;
-    margin: 5px 0;
-
-}
-
-#pokemon1 h2{
-    background-color: #164863;
-    color: white;
-    padding: 10px;
-}
-#pokemon2 h2{
-    background-color: #164863;
-    color: white;
-    padding: 10px;
-}
-figure{
-    width: 300px;
+    gap: 3%;
+    width: 70vw;
     margin: auto;
-
 }
-img{
+
+.indexPageBody section article{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 31%;
+    margin: 10px 0 10px 0;
+    border: 0;
+    padding: 0;
+    background-color: #427393;
+    color: #ddf2fd;
+}
+.indexPageBody section article figure{
+    width: 100%;
+    height: 100%;
+}
+
+.indexPageBody section article figure img{
     width: 100%;
 }
 
-/*test not real code*/
+.indexPageBody section article figure figcaption{
+    text-align: center;
+    margin: 10px 0 10px 0;
+}
 
-
-
-footer{
+.indexPageBody footer{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 50px;
     margin: 55px 0 0 0;
     font-size: 0.8em;
-    font-size: 0.8em;
     background-color: #427393;
+    color: #ddf2fd;
+}
+
+@media screen and (max-width: 900px){
+    .indexPageBody section{
+        width: 90vw;
+    }
+
+    .indexPageBody header figure{
+        width: 100px;
+        margin: 10px auto 10px auto;
+        }
+}
+
+@media screen and (max-width: 600px){
+    .indexPageBody section{
+        width: 70vw;
+        gap: 15px;
+    }
+
+    .indexPageBody section article{
+        width: 100%;
+    }
 }
 
 
 
 
-/*test not real code*/
+/*Login Pagina begin*/
 
+#loginPageBody{
+    background-image: url("/assets/login_background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
 
+#loginSection{
+    width: auto;
+    margin: 50vh auto;
+    background-color: #F2D544;
+    border-radius: 5px;
+    padding: 10px 30px;
+    height: 130px;
+    box-shadow: 10px 10px 10px #2C3740;
+}
 
-#pokemon1 h2{
-    color: white;
-    font-size: 2em;
+#loginSection h1{
+    font-size: 2.5em;
     font-weight: bold;
-}
-#pokemon2 h2{
-    font-weight: bold;
-    color: white;
-    font-size: 2em;
+    color: #2C3740;
 }
 
-
-
-
-
-
-.hamburger-button {
-    background-color: #427393;
-    color: white;
+#loginSection form input{
     padding: 15px;
-    font-size: 15px;
-    width: 205px; /* Aanpassen zoals nodig */
-    cursor: pointer;
-    position: absolute;
-    left: 0;
-    top: 0px;
- }
-#nav {
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+#loginSection p{
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+    #loginSection{
+        display: flex;
+        flex-direction: column;
+        height: 270px;
+        width: 80vw;
+    }
+    #loginSection form{
+        display: flex;
+        flex-direction: column;
+    }
+  }
+
+/*Login pagina einde*/
+
+
+/*Layout van main website*/
+.mainSitePages{  /*body van main site*/
+    display: grid;
+    grid-template-areas: 
+    'header header header header'
+    'aside main main main'
+    'footer footer footer footer'
+    ;
+    background-image: url("/assets/backgroundpatern.jpg");
+    background-repeat: repeat;
+    background-size: 30vw;
+}
+
+.mainSitePages header{
+    grid-area: header;
+    background-color: #2C3740;
+    height: 80px;
+}
+.mainSitePages aside{
+    grid-area: aside;
+    border-right:1px solid #2C3740;
+    box-shadow: #2C3740 5px 0px 10px;
+    background-color: #2C3740;
+    color: white;
+    min-width:20vw;
+}
+.mainSitePages main{
+    grid-area: main;
+    min-height: 100vh;
+}
+.mainSitePages footer{
+    grid-area: footer;
+    background-color: #2C3740;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .mainSitePages aside{
+        border-radius: 0px 0px 0px 0px;
+    }
+}
+
+
+/*menu knop*/
+
+.sidebar-toggle {
     display: none;
-    position: absolute;
-    left: 0;
-    top: 65px; /* Aanpassen zoals nodig */
-    background-color: #427393;
+}
+
+@media only screen and (max-width: 1024px) {
+
+    .sidebar-toggle {
+        display: block;
+        top: 20px;
+        left: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 999;
+        margin-left: 10px;
+    }
+    
+    .bar {
+        display: block;
+        width: 30px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: white;
+    }
+}
+
+/*header layout met logo en current pokemon*/
+.mainSitePages header{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mainSitePages header figure a img{
+    width: 100%;
+}
+
+.mainSitePages header #logo{
+    width: 350px;
+    align-self: center;
+}
+
+.mainSitePages header #currentPokemon img{
+    width: 100%;
+}
+
+.mainSitePages header #currentPokemon{
+    width: 50px;
+    margin-right: 25px;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .mainSitePages header #logo{
+        width: 250px;
+    }
+}
+
+/*Aside navigatie*/
+.mainSitePages aside{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.mainSitePages aside nav{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    text-decoration: none;
+    gap: 6%;
+    align-content: center;
+    margin-top: 25px;
+}
+
+.mainSitePages aside nav a{
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    font-size: 1em;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-color: #292f33;
+    padding: 20px;
+    border-radius: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.mainSitePages aside nav a img{
+    width: 30px;
+    margin: 0 5px;
+    transition: transform 0.3s ease;
+    height: auto;
+}
+
+.mainSitePages aside nav a:hover > img{ 
+    transform: scale(2.1);
+}
+
+@media only screen and (max-width: 1024px) {
+    .mainSitePages aside {
+        display: none;
+    }
+    .mainSitePages aside.active {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+    }
+    .mainSitePages aside nav{
+        align-items: center;
+    }
+
+}
+/*Main*/
+.mainSitePages main .mainarea{
+    display: flex;
+    gap: 20px;
+    justify-content:space-between;
+
+}
+
+.mainSitePages main h1{
+    text-align: center;
+    font-size: 4em;
+    font-weight: bold;
+    color: #292f33; /* Text color */
+    margin: 30px auto;
+    background-color: #FBA834;
+    width: 90%;
+    border-radius: 50px;
+    padding: 10px;
+}
+/*main vergelijken*/
+.leftSection, .rightSection {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+}
+.rightSection{
+    margin: 50px 20px 150px 0px;
+}
+.leftSection{
+    margin: 50px 0px 150px 20px;
+}
+.compareSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FBA834;
+    box-shadow: #2C3740 5px 0px 10px;
+}
+.selectForm{
+    width: 60%;
+    border-radius: 50px;
+}
+
+.selectForm select {
+    border-radius: 10px;
+}
+
+.selectForm select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #FDBF60;
+    box-shadow: #2C3740 5px 0px 10px;
+    color: #2C3740;
+    font-weight: bold;
+}
+
+.comparImage {
+    width: 10vw;
+}
+
+.comparImage img {
+    width: 100%;
+    height: auto;
+}
+
+.compareInfo {
+    background-color: #FDBF60;
+    box-shadow: #2C3740 5px 0px 10px;
+    border-radius: 10px;
+    width: 60%;
+}
+
+
+
+.compareInfo h2{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 5px 20px 5px 20px;
+}
+
+.compareInfo p{
+    font-size: 1.2em;
+    font-weight: 300;
+    
+    margin: 5px 20px 5px 20px;
+}
+.stats-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    
+    margin: 5px 20px 5px 20px;
+}
+
+.stats-list li {
+    overflow: hidden;
+}
+
+.stat-label {
+    float: left;
+    text-align: left; 
+    margin-right: 10px; 
+    font-weight: 300;
+}
+
+.stat-value {
+    float: right; 
+    text-align: right;
+    font-weight: 400;
+}
+.silverUnderline {
+    border-bottom: 10px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #c0c0c0, #dcdcdc, #ebebeb, #dcdcdc, #c0c0c0);
+    padding-bottom: 10px;
+  }
+.silverUnderlineInfo {
+    border-bottom: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #c0c0c0, #dcdcdc, #ebebeb, #dcdcdc, #c0c0c0);
+    padding-bottom: 10px;
+  }
+@media only screen and (max-width: 1024px) {
+    .left-section, .right-section {
+        margin: 10px;
+    }
+    .mainSitePages main .mainarea{
+        width: 100vw;
+        flex-direction: column;
+    }
+    .rightSection{
+        margin: 15px 80px 30px 80px;
+    }
+    .leftSection{
+        margin: 30px 80px 15px 80px;
+    }
+    .mainSitePages main h1{
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 768px) {
+    .rightSection{
+        margin: 0px 0px 0px 0px;
+    }
+    .leftSection{
+        margin: 0px 0px 0px 0px;
+    }
     
 }
-#nav li {
-    cursor: pointer;
-    background-color: #164863;
-    color: white;
-    padding: 15px;
-    margin: 10px 5px;
-}
-#nav a {
-    text-decoration: none;
-    color: white;
-    font-size: 18px;
-}
-#nav li:hover{
-    background-color: #0e2d3d;
+/*menu knop*/
+
+
+
+/*footer*/
+footer{
+    bottom: 0;
 }
 
 
-#pg_name h1{
-    background-color: #427393;
-    color: white;
-    padding: 10px;
-    margin: 5px 0;
-    font-size: 18px;
-
+body{
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    width: 100vw;
+    overflow-x: hidden;
 }
 
+/*Layout van main website*/
+.mainSitePages{  /*body van main site*/
+    display: grid;
+    grid-template-areas: 
+    'header header header header'
+    'aside main main main'
+    'footer footer footer footer'
+    ;
+    background-image: url("/assets/backgroundpatern.jpg");
+    background-repeat: repeat;
+    background-size: 30vw;
+}
 
-
-#quespokémon_pg{
-    background-color: #427393;
+.mainSitePages header{
+    grid-area: header;
+    background-color: #2C3740;
+    height: 80px;
+}
+.mainSitePages aside{
+    grid-area: aside;
+    border-right:1px solid #2C3740;
+    box-shadow: #2C3740 5px 0px 10px;
+    background-color: #2C3740;
     color: white;
-    padding: 10px;
-    margin: auto;
-    font-size: 18px;
-    border: none;
+}
+.mainSitePages main{
+    grid-area: main;
+}
+.mainSitePages footer{
+    grid-area: footer;
+    background-color: #2C3740;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .mainSitePages aside{
+        border-radius: 0px 0px 0px 0px;
+    }
+}
+
+/*Login Pagina begin*/
+
+#loginPageBody{
+    background-image: url("/assets/login_background.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+#loginSection{
     width: auto;
+    margin: 50vh auto;
+    background-color: #F2D544;
+    border-radius: 5px;
+    padding: 10px 30px;
+    height: 130px;
+    box-shadow: 10px 10px 10px #2C3740;
 }
 
-#img3{
+#loginSection h1{
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #2C3740;
+}
+
+#loginSection form input{
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+#loginSection p{
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+    #loginSection{
+        display: flex;
+        flex-direction: column;
+        height: 270px;
+        width: 80vw;
+    }
+    #loginSection form{
+        display: flex;
+        flex-direction: column;
+    }
+  }
+
+/*Login pagina einde*/
+
+/*menu knop*/
+
+.sidebar-toggle {
+    display: none;
+}
+
+@media only screen and (max-width: 1024px) {
+
+    .sidebar-toggle {
+        display: block;
+        top: 20px;
+        left: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 999;
+        margin-left: 10px;
+    }
+    
+    .bar {
+        display: block;
+        width: 30px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: white;
+    }
+}
+
+/*header layout met logo en current pokemon*/
+.mainSitePages header{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mainSitePages header figure a img{
+    width: 100%;
+}
+
+.mainSitePages header #logo{
+    width: 350px;
+    align-self: center;
+}
+
+.mainSitePages header #currentPokemon img{
+    width: 100%;
+}
+
+.mainSitePages header #currentPokemon{
+    width: 50px;
+    margin-right: 25px;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .mainSitePages header #logo{
+        width: 250px;
+    }
+}
+
+/*Aside navigatie*/
+.mainSitePages aside{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.mainSitePages aside nav{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    text-decoration: none;
+    gap: 6%;
+    align-content: center;
+    margin-top: 25px;
+}
+
+.mainSitePages aside nav a{
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    font-size: 1em;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-color: #292f33;
+    padding: 20px;
+    border-radius: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.mainSitePages aside nav a img{
+    width: 30px;
+    margin: 0 5px;
+    transition: transform 0.3s ease;
+    height: auto;
+}
+
+.mainSitePages aside nav a:hover > img{ 
+    transform: scale(2.1);
+}
+
+@media only screen and (max-width: 1024px) {
+    .mainSitePages aside {
+        display: none;
+    }
+    .mainSitePages aside.active {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        justify-content: center;
+    }
+    .mainSitePages aside nav{
+        align-items: center;
+    }
+
+}
+/*Main*/
+.mainSitePages main .mainarea{
+    display: flex;
+    gap: 20px;
+    justify-content:space-between;
+
+}
+
+.mainSitePages main h1{
+    text-align: center;
+    font-size: 4em;
+    font-weight: bold;
+    color: #292f33; /* Text color */
+    margin: 30px auto;
+    background-color: #FBA834;
+    width: 90%;
+    border-radius: 50px;
     padding: 10px;
-    margin-top: 100px;
-    background-color: #427393;
+}
+/*main vergelijken*/
+.leftSection, .rightSection {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+}
+.rightSection{
+    margin: 50px 20px 150px 0px;
+}
+.leftSection{
+    margin: 50px 0px 150px 20px;
+}
+.compareSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FBA834;
+    box-shadow: #2C3740 5px 0px 10px;
+}
+.selectForm{
+    width: 60%;
+    border-radius: 50px;
 }
 
+.selectForm select {
+    border-radius: 10px;
+}
+
+.selectForm select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #FDBF60;
+    box-shadow: #2C3740 5px 0px 10px;
+    color: #2C3740;
+    font-weight: bold;
+}
+
+.comparImage {
+    width: 10vw;
+}
+
+.comparImage img {
+    width: 100%;
+    height: auto;
+}
+
+.compareInfo {
+    background-color: #FDBF60;
+    box-shadow: #2C3740 5px 0px 10px;
+    border-radius: 10px;
+    width: 60%;
+}
+
+
+
+.compareInfo h2{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 5px 20px 5px 20px;
+}
+
+.compareInfo p{
+    font-size: 1.2em;
+    font-weight: 300;
+    
+    margin: 5px 20px 5px 20px;
+}
+.stats-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    
+    margin: 5px 20px 5px 20px;
+}
+
+.stats-list li {
+    overflow: hidden;
+}
+
+.stat-label {
+    float: left;
+    text-align: left; 
+    margin-right: 10px; 
+    font-weight: 300;
+}
+
+.stat-value {
+    float: right; 
+    text-align: right;
+    font-weight: 400;
+}
+.silverUnderline {
+    border-bottom: 10px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #c0c0c0, #dcdcdc, #ebebeb, #dcdcdc, #c0c0c0);
+    padding-bottom: 10px;
+  }
+.silverUnderlineInfo {
+    border-bottom: 2px solid;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(to right, #c0c0c0, #dcdcdc, #ebebeb, #dcdcdc, #c0c0c0);
+    padding-bottom: 10px;
+  }
+@media only screen and (max-width: 1024px) {
+    .left-section, .right-section {
+        margin: 10px;
+    }
+    .mainSitePages main .mainarea{
+        width: 100vw;
+        flex-direction: column;
+    }
+    .rightSection{
+        margin: 15px 80px 30px 80px;
+    }
+    .leftSection{
+        margin: 30px 80px 15px 80px;
+    }
+    .mainSitePages main h1{
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .mainSitePages main .mainarea{
+        width: 100vw;
+        flex-direction: column;
+    }
+    
+    .mainSitePages main.active {
+        display: none;
+    }
+    .left-section, .right-section {
+        margin: 10px;
+    }
+    .select-form {
+        flex: 0 0 auto;
+        padding: 2px;
+    }
+    .comparImage {
+        width: 30vw;
+    }
+    .compareInfo div h2{
+        font-size: 1em;
+        font-weight: bold;
+        margin: 5px 20px 5px 20px;
+    }
+    
+    .compareInfo div p{
+        font-size: 0.9em;
+        margin: 5px 20px 5px 20px;
+    }
+
+    .compareInfo h2{
+        font-size: 1em;
+        font-weight: bold;
+        margin: 5px 20px 5px 20px;
+    }
+    .rightSection{
+        margin: 15px 15px 15px 15px;
+    }
+    .leftSection{
+        margin: 15px 15px 15px 15px;
+    }
+    .compareInfo {
+        width: 95%;
+    }
+    .compareInfoDiv{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        flex: 1;
+    }
+}
+/*menu knop*/
+
+
+
+/*footer*/
+footer{
+    bottom: 0;
+}
+
+
+/*Battler page*/
+/*Battler page*/
+/*Battler page*/
+
+
+/*main battler*/
+.leftSectionBattle, .rightSectionBattle {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+}
+.rightSectionBattle{
+    margin: 50px 20px 100px 0px;
+}
+.leftSectionBattle{
+    margin: 50px 0px 100px 20px;
+}
+.battleSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FBA834;
+    box-shadow: #2C3740 5px 0px 10px;
+}
+.selectFormBattle{
+    width: 60%;
+    border-radius: 50px;
+}
+
+.selectFormBattle select {
+    border-radius: 10px;
+}
+
+.selectFormBattle select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #FDBF60;
+    box-shadow: #2C3740 5px 0px 10px;
+    color: #2C3740;
+    font-weight: bold;
+}
+
+.battleImage img {
+    width: 100%;
+    height: auto;
+}
+.battleInfo h2{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 5px 20px 5px 20px;
+}
+
+.battleInfo p{
+    font-size: 1.2em;
+    font-weight: 300;
+    margin: 5px 20px 5px 20px;
+    font-weight: bold;
+}
+
+.battleHpLevel{
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+}
+
+.fightButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+    flex-direction: column;
+}
+.fightButton button{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #FBA834;
+    box-shadow: #2C3740 5px 0px 10px;
+    color: #2C3740;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 40px;
+    font-size: 2em;
+}
+
+.fightButton button:hover{
+    background-color: #FDBF60;
+}
+
+@media only screen and (max-width: 1024px) {
+    .mainSitePages main .mainarea{
+        width: 100vw;
+        flex-direction: column;
+    }
+    .rightSectionBattle{
+        margin: 15px 80px 30px 80px;
+    }
+    .leftSectionBattle{
+        margin: 30px 80px 15px 80px;
+    }
+    .mainSitePages main h1{
+        font-size: 2em;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .mainSitePages main .mainarea{
+        width: 100vw;
+        flex-direction: column;
+    }
+    
+    .mainSitePages main.active {
+        display: none;
+    }
+    .select-form {
+        flex: 0 0 auto;
+        padding: 2px;
+    }
+    .battleImage {
+        width: 30vw;
+    }
+    .battleInfo div h2{
+        font-size: 1em;
+        font-weight: bold;
+        margin: 5px 20px 5px 20px;
+    }
+
+    .battleInfo h2{
+        font-size: 1em;
+        font-weight: bold;
+        margin: 5px 20px 5px 20px;
+    }
+    .rightSectionBattle{
+        margin: 15px 15px 15px 15px;
+    }
+    .leftSectionBattle{
+        margin: 15px 15px 15px 15px;
+    }
+    .battleInfo {
+        width: 95%;
+    }
+}
+
+/*guess page*/
+/*guess page*/
+/*guess page*/
+
+/*main guess*/
+.guessSection{
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FBA834;
+    box-shadow: #2C3740 5px 0px 10px;
+}
+
+.guessSection{
+    margin: 15px 250px 30px 250px;
+}
+.selectFormBattle{
+    width: 60%;
+    border-radius: 50px;
+}
+
+.guessInput input{ 
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #FDBF60;
+    box-shadow: #2C3740 5px 0px 10px;
+    color: #2C3740;
+    font-weight: bold;
+    border-radius: 10px;
+    margin: 30px 0 ;
+}
+
+.guessImage {
+    width: 250px;
+}
+
+.guessImage img {
+    width: 100%;
+    height: auto;
+    filter: grayscale(100%) brightness(0%);
+    pointer-events: none;
+}
+.guessInfo h2{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 5px 20px 5px 20px;
+}
+
+.guessButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+    flex-direction: column;
+}
+.guessButton button{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #FBA834;
+    box-shadow: #2C3740 5px 0px 10px;
+    color: #2C3740;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 40px;
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+
+.guessButton button:hover{
+    background-color: #FDBF60;
+}
+
+.guessScore{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+    flex-direction: column;
+    background-color: #FBA834;
+    padding: 50px;
+    font-weight: bold;
+    gap: 20px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+}
+
+@media only screen and(max-width: 1024px) {
+    .mainSitePages main .mainarea{
+        width: 100vw;
+        flex-direction: column;
+    }
+    .guessSection{
+        margin: 15px 100px 30px 80px;
+    }
+    .mainSitePages main h1{
+        font-size: 2em;
+    }
+    .guessInput input{ 
+        width: 80%;
+        margin: auto;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .mainSitePages main .mainarea{
+        width: 100vw;
+        flex-direction: column;
+    }
+    
+    .mainSitePages main.active {
+        display: none;
+    }
+    .guessImage {
+        width: 30vw;
+    }
+    .guessInfoh2{
+        font-size: 1em;
+        font-weight: bold;
+        margin: 5px 20px 5px 20px;
+    }
+    .guessSection{
+        margin: 15px 15px 15px 15px;
+    }
+    .guessInfo {
+        width: 95%;
+    }
+    .guessInput input{ 
+        width: 95%;
+        margin: auto;
+    }
+}
+
+/*CatchPokemon*/
+/*CatchPokemon*/
+/*CatchPokemon*/
+
+/*main catch*/
+
+.catchSection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    gap: 5%;
+  }
+
+  .catchArticle {
+    width: calc(20%);
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: #FBA834;
+    border-radius: 30px;
+    padding: 20px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .catchArticle {
+      width: calc(50%);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .catchArticle {
+      width: calc(80%);
+    }
+  }
+
+  .catchArticle figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px; 
+    border-radius: 10px;
+    margin: auto;
+  }
+
+  .catchPopupBtn img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none;
+  }
+
+  .catchArticle h2 {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+.catchPopupBtn{
+    border: none;
+    background: none;
+    margin: auto;
+    cursor: pointer;
+}
+
+.catchPopup {
+    display: none; /* Initially hidden */
+    position: fixed; /* Position the section relative to the viewport */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the section perfectly */
+    z-index: 9999;
+    background-color: #FBA834;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 100%; /* Adjust the maximum width as needed */
+    box-shadow: 0 0 10px rgba(5, 5, 5); /* Optional: Add a shadow */
+}
+
+.closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: red;
+}
+
+.catchPopup section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.catchButton img{
+    width: 100%;
+}
+
+.catchButton button{
+    background: red;
+    border: none;
+    transition: .1s ease-in-out;
+    width: 100px;
+    border: red 5px solid;
+    border-radius: 50%;
+    padding: 10px;
+}
+.catchButton button:hover{
+    transform: scale(1.1);
+}
+
+.catchButton button:active{
+    transform: scale(1);
+}
+
+.catchPopup figure img {
+    width: 300px;
+    height: auto;
+    border-radius: 50%;
+    border-radius: 10px;
+    background-color: #FDBF60;
+}
+
+.catchPopup h2, .catchPopup p {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #2C3740;
+}
+
+
+/*eigen pokemon*/
+/*eigen pokemon*/
+/*eigen pokemon*/
+
+.filterSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px;
+}
+
+.filterSection form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px;
+    background-color: #FBA834;
+    padding: 30px;
+    border-radius: 30px ;
+}
+
+.filterSection form input{
+    background-color: #FDBF60;
+    padding: 7px;
+    border-radius: 30px ;
+    border: none;
+}
+
+.filterSection form input:nth-child(4):hover{
+    background-color:#F2D544;
+    padding: 7px;
+    border-radius: 30px ;
+    border: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+    .filterSection form input{
+      width: calc(100%);
+    }
+    .filterSection form{
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 768px) {
+    
+}
+
+
+.ownSection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    gap: 5%;
+  }
+
+.ownArticle {
+    width: calc(20%);
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: #FBA834;
+    border-radius: 30px;
+    padding: 20px;
+  }
+
+@media screen and (max-width: 1024px) {
+    .ownArticle {
+      width: calc(50%);
+    }
+  }
+
+@media screen and (max-width: 768px) {
+    .ownArticle {
+      width: calc(80%);
+    }
+  }
+
+.ownArticle figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px; 
+    border-radius: 10px;
+    margin: auto;
+  }
+
+.ownPopupBtn img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none;
+  }
+
+.ownArticle h2 {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+.ownPopupBtn{
+    border: none;
+    background: none;
+    margin: auto;
+    cursor: pointer;
+}
+
+.ownPopup {
+    display: none; /* Initially hidden */
+    position: fixed; /* Position the section relative to the viewport */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center the section perfectly */
+    z-index: 9999;
+    background-color: #FBA834;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 100%; /* Adjust the maximum width as needed */
+    box-shadow: 0 0 10px rgba(5, 5, 5); /* Optional: Add a shadow */
+    max-width: 100vw;
+}
+
+.ownCloseBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: red;
+}
+
+.evolutionImage img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border-radius: 10px;
+    background-color: #FDBF60;
+}
+.evolutionImage figcaption {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.evolutionImage {
+    width: 200px;
+    margin: auto;
+}
+.evolutionInfo{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.evolutionSteps h2{
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: 5px 20px 5px 20px;
+    text-align: center;
+}
+
+.evolutionStepsImages{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.evolutionStepsImages figure img{
+    width: 100%
+}
+
+.evolutionStepsImages figure figcaption{
+    text-align: center;
+    font-weight: bold;
+}
+
+.evolutionStepsImages figure{
+    width: 80px;
+    height: auto;
+    border-radius: 50%;
+    border-radius: 10px;
+    background-color: #FDBF60;
+    padding: 10px;
+}
+.evolutionStats h2{
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: 5px 20px 5px 20px;
+    text-align: center;
+}
+.evoStatList{
+    background: #FDBF60;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.evoStatList li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+    .evolutionStepsImages{
+        flex-direction: row;
+    }
+    .evolutionInfo{
+        flex-direction: column;
+    }
+  }
