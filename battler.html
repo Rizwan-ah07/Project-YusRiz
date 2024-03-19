@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js" ></script>
+    <script src="js/script.js" defer></script>
     <title>Vechten</title>
 </head>
 <body class="mainSitePages" id="comparePage">
@@ -24,7 +24,9 @@
             </a>
         </figure>
         <figure id="currentPokemon"> 
+            <a href="ownpokemon.html">
             <img src="assets/currentpokemon.gif" alt="currentPokemon">
+            </a>
         </figure>
         
     </header>
@@ -42,13 +44,16 @@
     <section class="mainarea">
         <section class="leftSectionBattle battleSection">
             <form class="selectFormBattle">
-                <select name="leftSelect">
-                    <option value="option1">Pokemon Kiezen</option>
-                    <option value="option2">Pikachu</option>
+                <select name="leftSelect" id="pokemonSelectBattleLeft">
+                    <option value="">Pokemon Kiezen</option>
+                    <option value="charmander">Charmander</option>
+                    <option value="squirtle">Squirtle</option>
+                    <option value="dialga">Dialga</option>
+                    <option value="giratina">Giratina</option>
                 </select>
             </form>
             <figure class="battleImage">
-                <img src="assets/compare2.gif" alt="pokemon2">
+                <img src="" alt="kies een pokemon">
             </figure>
             <article class="battleInfo"> 
                 <h2 class="silverUnderline">Pokemon stats</h2>
@@ -57,13 +62,16 @@
         </section>
         <section class="rightSectionBattle battleSection">
             <form class="selectFormBattle">
-                <select name="leftSelectBattle">
-                    <option value="option1">Pokemon Kiezen</option>
-                    <option value="option2">Pikachu</option>
+                <select name="leftSelectBattle" id="pokemonSelectBattleRight">
+                    <option value="">Pokemon Kiezen</option>
+                    <option value="charmander">Charmander</option>
+                    <option value="squirtle">Squirtle</option>
+                    <option value="dialga">Dialga</option>
+                    <option value="giratina">Giratina</option>
                 </select>
             </form>
             <figure class="battleImage">
-                <img src="assets/compare2.gif" alt="pokemon2">
+                <img src="" alt="kies een pokemon">
             </figure>
             <article class="battleInfo">
                 <h2 class="silverUnderline">Pokemon stats</h2>

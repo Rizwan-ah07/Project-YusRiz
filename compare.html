@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js" ></script>
+    <script src="js/script.js" defer></script>
     <title>Vergelijken</title>
 </head>
 <body class="mainSitePages" id="comparePage">
@@ -24,9 +24,10 @@
             </a>
         </figure>
         <figure id="currentPokemon"> 
-            <img src="assets/currentpokemon.gif" alt="currentPokemon">
+            <a href="ownpokemon.html">
+                <img src="assets/currentpokemon.gif" alt="currentPokemon">
+            </a>
         </figure>
-        
     </header>
     <aside class="navigation">
         <nav>
@@ -37,67 +38,47 @@
             <a href="catch.html"><img src="assets/menuicon.gif" alt="pokeball"> Pokémon Vangen</a>
         </nav>
     </aside>
-    <main class="mainMain">
+ <main class="mainMain">
         <h1>Pokemon Vergelijken</h1>
-    <section class="mainarea">
-        <section class="leftSection compareSection">
-            <form class="selectForm">
-                <select name="lefSelect">
-                    <option value="option1">Pokemon Kiezen</option>
-                    <option value="option2">Pikachu</option>
-                </select>
-            </form>
-            <figure class="comparImage">
-                <img src="assets/compare2.gif" alt="pokemon2">
-            </figure>
-            <article class="compareInfo">
-                <div class="compareInfoDiv">
-                    <h2 class="silverUnderline">Pokemon type</h2>
-                    <p class="silverUnderlineInfo">Electric</p>
-                    <h2 class="silverUnderline">Pokemon ability</h2>
-                    <p class="silverUnderlineInfo">Lightning strike</p>
-                </div>
-                <h2 class="silverUnderline">Pokemon stats</h2>
-                <ul class="stats-list silverUnderlineInfo" >
-                    <li><span class="stat-label">HP:</span> <span class="stat-value">90</span></li>
-                    <li><span class="stat-label">Attack:</span> <span class="stat-value">55</span></li>
-                    <li><span class="stat-label">Defense:</span> <span class="stat-value">40</span></li>
-                    <li><span class="stat-label">Sp. Atk:</span> <span class="stat-value">50</span></li>
-                    <li><span class="stat-label">Sp. Def:</span> <span class="stat-value">50</span></li>
-                    <li><span class="stat-label">Speed:</span> <span class="stat-value">90</span></li>
-                </ul>
-            </article>
+        <section class="mainarea">
+            <section class="leftSection compareSection">
+                <!-- Added unique ID for the select element -->
+                <form class="selectForm">
+                    <select name="leftSelect" id="pokemonSelectLeft">
+                        <option value="">Pokemon Kiezen</option>
+                        <option value="pikachu">Pikachu</option>
+                        <option value="squirtle">Squirtle</option>
+                        <option value="charmander">Charmander</option>
+                    </select>
+                </form>
+                <figure class="comparImage" id="pokemonImageLeft">
+                    <!-- Placeholder image -->
+                    <img src="" alt="Selected Pokemon" id="selectedPokemonLeft">
+                </figure>
+                <article class="compareInfo" id="pokemonInfoLeft">
+                    <!-- Dynamic content will be loaded here based on selection -->
+                </article>
+            </section>
+            <section class="rightSection compareSection">
+                <!-- Added unique ID for the select element -->
+                <form class="selectForm">
+                    <select name="rightSelect" id="pokemonSelectRight">
+                        <option value="">Pokemon Kiezen</option>
+                        <option value="pikachu">Pikachu</option>
+                        <option value="squirtle">Squirtle</option>
+                        <option value="charmander">Charmander</option>
+                    </select>
+                </form>
+                <figure class="comparImage" id="pokemonImageRight">
+                    <!-- Placeholder image -->
+                    <img src="" alt="Selected Pokemon" id="selectedPokemonRight">
+                </figure>
+                <article class="compareInfo" id="pokemonInfoRight">
+                    <!-- Dynamic content will be loaded here based on selection -->
+                </article>
+            </section>
         </section>
-        <section class="rightSection compareSection">
-            <form class="selectForm">
-                <select name="leftSelect">
-                    <option value="option1">Pokemon Kiezen</option>
-                    <option value="option2">Pikachu</option>
-                </select>
-            </form>
-            <figure class="comparImage">
-                <img src="assets/compare2.gif" alt="pokemon2">
-            </figure>
-            <article class="compareInfo">
-                <div class="compareInfoDiv">
-                    <h2 class="silverUnderline">Pokemon type</h2>
-                    <p class="silverUnderlineInfo">Electric</p>
-                    <h2 class="silverUnderline">Pokemon ability</h2>
-                    <p class="silverUnderlineInfo">Lightning strike</p>
-                </div>
-                <h2 class="silverUnderline">Pokemon stats</h2>
-                <ul class="stats-list silverUnderlineInfo" >
-                    <li><span class="stat-label">HP:</span> <span class="stat-value">90</span></li>
-                    <li><span class="stat-label">Attack:</span> <span class="stat-value">55</span></li>
-                    <li><span class="stat-label">Defense:</span> <span class="stat-value">40</span></li>
-                    <li><span class="stat-label">Sp. Atk:</span> <span class="stat-value">50</span></li>
-                    <li><span class="stat-label">Sp. Def:</span> <span class="stat-value">50</span></li>
-                    <li><span class="stat-label">Speed:</span> <span class="stat-value">90</span></li>
-                </ul>
-            </article>
-        </section>
-    </section>
-</main>
+    </main>
     <footer>
         <p>&copy; <span id="currentYear"></span> Pokeverse. Alle rechten voorbehouden.</p>
     </footer>
