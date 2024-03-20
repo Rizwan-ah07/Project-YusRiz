@@ -1575,3 +1575,15 @@ footer{
         flex-direction: column;
     }
   }
+
+  @media only screen and (max-width: 768px) {
+    .mainSitePages {
+        /* Adjust to single column layout */
+        grid-template-areas: 
+            'header'
+            'main'
+            'aside'
+            'footer';
+        grid-template-columns: 1fr; /* One single column */
+    }
+}
