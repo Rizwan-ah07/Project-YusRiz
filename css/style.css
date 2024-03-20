@@ -1587,3 +1587,25 @@ footer{
         grid-template-columns: 1fr; /* One single column */
     }
 }
+
+.notAvailableMain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    flex-direction: column;
+}
+
+.notAvailableMain h1{
+    margin-top: 50px;
+}
+
+.notAvailableMain a{
+    margin-top: 10px;
+}
+
+.indexCaption{
+    color: white;
+    font-weight: bold;
+    text-decoration: ;
+}
