@@ -153,6 +153,7 @@ width: 100%;
     'aside main main main'
     'footer footer footer footer'
     ;
+    grid-template-columns: 1fr 3fr;
     background-image: url("/assets/backgroundpatern.jpg");
     background-repeat: repeat;
     background-size: 30vw;
@@ -169,7 +170,6 @@ width: 100%;
     box-shadow: #2C3740 5px 0px 10px;
     background-color: #2C3740;
     color: white;
-    min-width:20vw;
 
 }
 .mainSitePages main{
@@ -331,6 +331,8 @@ width: 100%;
     display: flex;
     justify-content: center;
     border-radius: 50px;
+    width: 80%; 
+    margin: 50px auto;
 }
 .rightSection{
     margin: 50px 20px 150px 0px;
@@ -467,6 +469,13 @@ width: 100%;
     }
     
 }
+
+.mainarea {
+    display: flex;
+    justify-content: space-evenly; 
+    align-items: center;
+    flex-direction: row; 
+}
 /*menu knop*/
 
 body{
@@ -501,7 +510,6 @@ body{
     box-shadow: #2C3740 5px 0px 10px;
     background-color: #2C3740;
     color: white;
-    width: 25px;
 }
 .mainSitePages main{
     grid-area: main;
@@ -921,6 +929,9 @@ footer{
     display: flex;
     justify-content: center;
     border-radius: 50px;
+    width: 82%; 
+    height: 50%;
+    margin: 50px auto;
 }
 .rightSectionBattle{
     margin: 50px 20px 100px 0px;
@@ -934,6 +945,7 @@ footer{
     align-items: center;
     background-color: #FBA834;
     box-shadow: #2C3740 5px 0px 10px;
+    flex-grow: 1;
 }
 .selectFormBattle{
     width: 60%;
@@ -954,9 +966,17 @@ footer{
     font-weight: bold;
 }
 
-.battleImage img {
+.battleImage {
+    overflow: hidden; 
     width: 100%;
-    height: auto;
+    max-height: 300px;
+  }
+
+.battleImage img {
+    width: 300px;
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
 }
 .battleInfo h2{
     font-size: 1.5em;
@@ -1429,7 +1449,8 @@ footer{
 
 .ownPopupBtn img {
     max-width: 100%;
-    height: auto;
+    height: 105px;
+    width: auto;
     display: block;
     pointer-events: none;
   }
