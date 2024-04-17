@@ -1233,42 +1233,46 @@ footer{
 /*main catch*/
 
 .catchSection {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: auto;
-    gap: 5%;
-  }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust the min size to control the number of cards */
+    gap: 10px; /* Adjust the gap to control the spacing between cards */
+    padding: 10px; /* Adjust padding as needed */
+    margin: 0 auto; /* Centralize the section */
+    max-width: 1200px; /* You can set a max-width if you want to limit the section width */
+}
 
-  .catchArticle {
-    width: calc(20%);
-    margin-bottom: 20px;
-    text-align: center;
+.catchArticle {
     background-color: #FBA834;
-    border-radius: 30px;
-    padding: 20px;
-  }
-
-  .catchArticle figure {
+    border-radius: 20px;
+    padding: 10px; /* Adjust padding inside the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px; 
-    border-radius: 10px;
-    margin: auto;
-  }
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+}
 
-  .catchPopupBtn img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    pointer-events: none;
-  }
+.catchArticle figure {
+    width: 100%; /* Use 100% of card width */
+    padding-top: 100%; /* Padding top for aspect ratio */
+    position: relative; /* To absolutely position the image inside */
+}
 
-  .catchArticle h2 {
-    margin-top: 10px;
-    text-align: center;
-  }
+.catchArticle img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* This will cover the figure area */
+    height: 100%;
+    object-fit: cover; /* Cover the area, can be changed to contain */
+}
+
+.catchArticle h2 {
+    font-size: 1em; /* Adjust the font size as necessary */
+    margin-top: 0.5em; /* Space from the top of the h2 to the image above */
+    text-align: center; /* Center the text */
+    padding: 0 5px; /* Add padding to handle longer names */
+}
 
     .not-caught{
     filter: grayscale(100%) brightness(0%);
@@ -1294,6 +1298,14 @@ footer{
     cursor: pointer;
 }
 
+.catchPopupBtn img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    pointer-events: none;
+  }
+
+
 .catchPopup {
     display: none; /* Initially hidden */
     position: fixed; /* Position the section relative to the viewport */
@@ -1307,6 +1319,7 @@ footer{
     max-width: 100%; /* Adjust the maximum width as needed */
     box-shadow: 0 0 10px rgba(5, 5, 5); /* Optional: Add a shadow */
 }
+
 
 .closeBtn {
     position: absolute;
@@ -1597,13 +1610,12 @@ footer{
 
   @media only screen and (max-width: 768px) {
     .mainSitePages {
-        /* Adjust to single column layout */
         grid-template-areas: 
             'header'
             'main'
             'aside'
             'footer';
-        grid-template-columns: 1fr; /* One single column */
+        grid-template-columns: 1fr;
     }
 }
 

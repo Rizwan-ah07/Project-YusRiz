@@ -1,6 +1,7 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import path from "path";
+import axios from "axios";
 
 dotenv.config();
 
@@ -44,11 +45,57 @@ app.get("/battler", (req, res) => {
 });
 
 
-app.get("/catch", (req, res) => {
-    res.render("catch", {
-        title: "Catch Page"
-    });
-});
+const getPokemonDetails = async (id: number) => {
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    return response.data;
+  };
+
+  const getGenerations = async () => {
+    const response = await axios.get('https://pokeapi.co/api/v2/generation/');
+    return response.data.results.map((gen: any) => gen.name);
+};
+
+const getTypes = async () => {
+    const response = await axios.get('https://pokeapi.co/api/v2/type/');
+    return response.data.results.map((type: any) => type.name);
+};
+  
+  app.get("/catch", async (req, res) => {
+      try {
+          const pokemonPromises = [];
+          for (let i = 1; i <= 9; i++) {
+              pokemonPromises.push(getPokemonDetails(i));
+          }
+          const pokemonsDetails = await Promise.all(pokemonPromises);
+          
+          const pokemons = pokemonsDetails.map((pokemon) => {
+              return {
+                  id: pokemon.id,
+                  name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1), 
+                  types: pokemon.types.map((type: any) => type.type.name).join(', '),
+                  image: pokemon.sprites.other['official-artwork'].front_default,
+                  stats: pokemon.stats.map((stat: any) => ({
+                      name: stat.stat.name,
+                      base: stat.base_stat,
+                  })),
+                  abilities: pokemon.abilities.map((ability: any) => ability.ability.name),
+              };
+          });
+  
+          const generations = await getGenerations();
+          const types = await getTypes();
+  
+          res.render('catch', {
+              title: 'Catch Page',
+              pokemons: pokemons,
+              generations: generations,
+              types: types,
+          });
+      } catch (error) {
+          console.error(error);
+          res.status(500).render('error', { message: 'Error fetching Pokémon data.' });
+      }
+  });
 
 
 app.get("/compare", (req, res) => {
