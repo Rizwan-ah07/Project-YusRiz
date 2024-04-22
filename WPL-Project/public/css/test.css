@@ -41,6 +41,7 @@
   display: flex; 
   gap: 10px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .searchAndFilter input[type="text"] {
@@ -71,10 +72,37 @@
     .pokemonContainer {
       grid-template-columns: repeat(2, 1fr); 
     }
+    .searchAndFilter form {
+      flex-direction: column; /* Stack the form elements vertically */
+      align-items: center; /* Align them to the center */
+  }
+
+  .searchAndFilter input[type="text"],
+  .searchAndFilter select,
+  .searchAndFilter button {
+      width: 90%; /* Make the form elements take up most of the container width */
+      margin-bottom: 10px; /* Add some space between the elements */
+  }
+
+  .searchAndFilter button {
+      width: auto; /* Let the button width be as per content */
+  }
   }
   
   @media (max-width: 768px) {
     .pokemonContainer {
       grid-template-columns: 1fr; 
     }
+    .searchAndFilter form {
+      flex-direction: column;
+  }
+
+  .searchAndFilter input[type="text"],
+  .searchAndFilter select {
+      width: calc(100% - 20px); /* Subtracting padding */
+  }
+
+  .searchAndFilter button {
+      width: calc(100% - 20px); /* Adjust the button width on smaller screens */
+  }
   }

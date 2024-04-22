@@ -63,7 +63,7 @@ const getTypes = async () => {
   app.get("/catch", async (req, res) => {
       try {
           const pokemonPromises = [];
-          for (let i = 1; i <= 9; i++) {
+          for (let i = 1; i <= 30; i++) {
               pokemonPromises.push(getPokemonDetails(i));
           }
           const pokemonsDetails = await Promise.all(pokemonPromises);
