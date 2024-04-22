@@ -43,7 +43,31 @@
                 </article>
             <% }); %>
         </section>
+        <button id="loadMore" onclick="loadMore()">View More</button>
     </main>
+
+    <script>
+        var currentPage = 1;
+        function loadMore() {
+            currentPage++;
+            fetch('/catch?page=' + currentPage)
+                .then(response => response.text())
+                .then(html => {
+                    var tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = html;
+    
+                    var pokemonCards = tempDiv.querySelectorAll('.pokemonCard');
+                    if (pokemonCards.length) {
+                        pokemonCards.forEach(card => {
+                            document.querySelector('.pokemonContainer').appendChild(card);
+                        });
+                    } else {
+                        document.getElementById('loadMore').style.display = 'none';
+                    }
+                })
+                .catch(err => console.error('Error loading more Pokémon:', err));
+        }
+    </script>
 
     <footer>
         <p>&copy; <%= new Date().getFullYear() %> Pokeverse. All rights reserved.</p>

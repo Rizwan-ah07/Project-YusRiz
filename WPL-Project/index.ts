@@ -60,42 +60,49 @@ const getTypes = async () => {
     return response.data.results.map((type: any) => type.name);
 };
   
-  app.get("/catch", async (req, res) => {
-      try {
-          const pokemonPromises = [];
-          for (let i = 1; i <= 30; i++) {
-              pokemonPromises.push(getPokemonDetails(i));
-          }
-          const pokemonsDetails = await Promise.all(pokemonPromises);
-          
-          const pokemons = pokemonsDetails.map((pokemon) => {
-              return {
-                  id: pokemon.id,
-                  name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1), 
-                  types: pokemon.types.map((type: any) => type.type.name).join(', '),
-                  image: pokemon.sprites.other['official-artwork'].front_default,
-                  stats: pokemon.stats.map((stat: any) => ({
-                      name: stat.stat.name,
-                      base: stat.base_stat,
-                  })),
-                  abilities: pokemon.abilities.map((ability: any) => ability.ability.name),
-              };
-          });
-  
-          const generations = await getGenerations();
-          const types = await getTypes();
-  
-          res.render('catch', {
-              title: 'Catch Page',
-              pokemons: pokemons,
-              generations: generations,
-              types: types,
-          });
-      } catch (error) {
-          console.error(error);
-          res.status(500).render('error', { message: 'Error fetching Pokémon data.' });
-      }
-  });
+app.get("/catch", async (req, res) => {
+    const limit = 30;  
+    const page = parseInt(req.query.page as string) || 1;
+    const offset = (page - 1) * limit;
+
+    try {
+        const pokemonPromises = [];
+        for (let i = offset + 1; i <= offset + limit; i++) {
+            pokemonPromises.push(getPokemonDetails(i));
+        }
+        const pokemonsDetails = await Promise.all(pokemonPromises);
+
+        const pokemons = pokemonsDetails.map(pokemon => ({
+            id: pokemon.id,
+            name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
+            types: pokemon.types.map((type: any) => type.type.name).join(', '),
+            image: pokemon.sprites.other['official-artwork'].front_default,
+            stats: pokemon.stats.map((stat: any) => ({
+                name: stat.stat.name,
+                base: stat.base_stat,
+            })),
+            abilities: pokemon.abilities.map((ability: any) => ability.ability.name),
+        }));
+
+        const generations = await getGenerations();
+        const types = await getTypes();
+
+        if (pokemons.length === 0) {
+            res.status(204).send(); 
+        } else {
+            res.render('catch', {
+                title: 'Catch Page',
+                pokemons: pokemons,
+                generations: generations,
+                types: types,
+                nextPage: page + 1
+            });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).render('error', { message: 'Error fetching Pokémon data.' });
+    }
+});
 
 
 app.get("/compare", (req, res) => {

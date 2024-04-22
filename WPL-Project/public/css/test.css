@@ -73,19 +73,19 @@
       grid-template-columns: repeat(2, 1fr); 
     }
     .searchAndFilter form {
-      flex-direction: column; /* Stack the form elements vertically */
-      align-items: center; /* Align them to the center */
+      flex-direction: column; 
+      align-items: center; 
   }
 
   .searchAndFilter input[type="text"],
   .searchAndFilter select,
   .searchAndFilter button {
-      width: 90%; /* Make the form elements take up most of the container width */
-      margin-bottom: 10px; /* Add some space between the elements */
+      width: 90%; 
+      margin-bottom: 10px; 
   }
 
   .searchAndFilter button {
-      width: auto; /* Let the button width be as per content */
+      width: auto; 
   }
   }
   
@@ -99,10 +99,22 @@
 
   .searchAndFilter input[type="text"],
   .searchAndFilter select {
-      width: calc(100% - 20px); /* Subtracting padding */
+      width: calc(100% - 20px); 
   }
 
   .searchAndFilter button {
-      width: calc(100% - 20px); /* Adjust the button width on smaller screens */
+      width: calc(100% - 20px); 
   }
   }
+
+  button#loadMore {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
