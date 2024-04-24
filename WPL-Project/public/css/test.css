@@ -1,3 +1,8 @@
+body{
+  background: #2C3740; 
+  color: #fff;
+}
+
 .pokemonContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
@@ -32,7 +37,7 @@
   }
 
 .searchAndFilter {
-  background: #2C3740; 
+  background: #2C3740;
   padding: 1rem; 
   color: white; 
 }
@@ -44,19 +49,19 @@
   flex-wrap: wrap;
 }
 
-.searchAndFilter input[type="text"] {
+.searchAndFilter input[type="text"],
+#searchForm select {
   padding: 0.5rem; 
   border: none; 
   border-radius: 5px; 
   font-size: 1rem;
+  background-color: #2C3740;
+  color: white;
+  border: 1px solid #fff;
 }
 
-.searchAndFilter select {
-  padding: 0.5rem;
-  border: none; 
-  border-radius: 5px; 
-  background: #f3f3f3; 
-  color: #333; 
+#searchForm input[type="text"]::placeholder {
+  color: white; 
 }
 
 .searchAndFilter button {
