@@ -16,7 +16,7 @@
 
     <section class="searchAndFilter">
         <form id="searchForm" action="/search" method="get">
-            <input type="text" name="search" placeholder="Search Pokémon">
+            <input type="text" name="search" placeholder="Search Pokémon...">
             <select name="generation">
                 <option value="">Any Generations</option>
                 <% generations.forEach(gen=> { %>
@@ -39,9 +39,9 @@
 
     <main>
         <section class="pokemonContainer">
-            <% pokemons.forEach(pokemon=> { %>
-                <article class="pokemonCard" data-types="<%= pokemon.types %>">
-                    <img src="<%= pokemon.image %>" alt="<%= pokemon.name %>" class="pokemonImage">
+            <% pokemons.forEach(pokemon=> { %> <!-- Wrap the .pokemonCard element with an <a> tag --> <a
+                    href="/pokemon/<%= pokemon.id %>" class="pokemonCard" data-types="<%= pokemon.types %>"> <img
+                        src="<%= pokemon.image %>" alt="<%= pokemon.name %>" class="pokemonImage">
                     <div class="pokemonInfo">
                         <h2 class="pokemonName">
                             <%= pokemon.name %> (#<%= pokemon.id %>)
@@ -49,10 +49,9 @@
                         <p class="pokemonTypes">Type: <%= pokemon.types %>
                         </p>
                     </div>
-                </article>
+                </a>
                 <% }); %>
-        </section>
-        <button id="loadMore" onclick="loadMore()">View More</button>
+        </section> <button id="loadMore" onclick="loadMore()">View More</button>
     </main>
 
     <script>

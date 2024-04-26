@@ -1,8 +1,8 @@
-import express, { Express } from "express";
+import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import path from "path";
-import axios from "axios";
-
+import fetch from 'node-fetch';
+import { Pokemon, Generation, Type, EvolutionDetails, EvolutionChain, PokemonDetails } from "./interface";
 dotenv.config();
 
 const app : Express = express();
@@ -45,25 +45,101 @@ app.get("/battler", (req, res) => {
 });
 
 
-const getPokemonDetails = async (id: number) => {
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    return response.data;
-  };
-
-  const getGenerations = async () => {
-    const response = await axios.get('https://pokeapi.co/api/v2/generation/');
-    return response.data.results.map((gen: any) => gen.name);
+const getPokemonDetails = async (id: number): Promise<PokemonDetails> => {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    // Construct and return a PokemonDetails object
+    const pokemonDetails: PokemonDetails = {
+        ...data,
+        image: data.sprites.other['official-artwork'].front_default // Use the official artwork image
+    };
+    return pokemonDetails;
 };
 
-const getTypes = async () => {
-    const response = await axios.get('https://pokeapi.co/api/v2/type/');
-    return response.data.results.map((type: any) => type.name);
+const getGenerations = async (): Promise<string[]> => {
+    const response = await fetch('https://pokeapi.co/api/v2/generation/');
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = (await response.json()) as Generation;
+    return data.results.map(gen => gen.name);
 };
-  
-app.get("/catch", async (req, res) => {
-    const limit = 30;  
+
+const getTypes = async (): Promise<string[]> => {
+    const response = await fetch('https://pokeapi.co/api/v2/type/');
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = (await response.json()) as Type;
+    return data.results.map(type => type.name);
+};
+
+const getPokemonSpecies = async (id: number) => {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+};
+
+const fetchAllEvolutions = async (evolutionStage: EvolutionDetails[]): Promise<PokemonDetails[]> => {
+    let evolutions: PokemonDetails[] = [];
+    for (const evo of evolutionStage) {
+        const speciesId = parseInt(evo.species.url.split('/').slice(-2)[0]);
+        const pokemonDetails: PokemonDetails = await getPokemonDetails(speciesId);
+        evolutions.push({
+            ...pokemonDetails,
+            image: pokemonDetails.sprites.other['official-artwork'].front_default
+        });
+        if (evo.evolves_to.length > 0) {
+            const furtherEvolutions: PokemonDetails[] = await fetchAllEvolutions(evo.evolves_to);
+            evolutions = evolutions.concat(furtherEvolutions);
+        }
+    }
+    return evolutions;
+};
+
+const getPokemonDetailsAndEvolutions = async (id: number): Promise<{ pokemon: PokemonDetails; evolutionChain: PokemonDetails[] }> => {
+    const species = await getPokemonSpecies(id);
+    const evolutionChainResponse: EvolutionChain = await getEvolutionChain(species.evolution_chain.url);
+    const evolutionChain: PokemonDetails[] = await fetchAllEvolutions([evolutionChainResponse.chain]);
+    const pokemon: PokemonDetails = await getPokemonDetails(id);
+    return { pokemon, evolutionChain };
+};
+app.get("/pokemon/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const details = await getPokemonDetailsAndEvolutions(parseInt(id));
+        res.render("pokemon-details", {
+            title: `Details of ${details.pokemon.name}`,
+            pokemon: details.pokemon,
+            evolutionChain: details.evolutionChain
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).render('error', { message: 'Failed to fetch Pokémon details.' });
+    }
+});
+
+const getEvolutionChain = async (url: string): Promise<EvolutionChain> => {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data as EvolutionChain;
+};
+// Pokemon overview
+
+app.get("/catch", async (req: Request, res: Response) => {
+    const limit = 30;
     const page = parseInt(req.query.page as string) || 1;
     const offset = (page - 1) * limit;
+
+
 
     try {
         const pokemonPromises = [];
@@ -75,20 +151,20 @@ app.get("/catch", async (req, res) => {
         const pokemons = pokemonsDetails.map(pokemon => ({
             id: pokemon.id,
             name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
-            types: pokemon.types.map((type: any) => type.type.name).join(', '),
+            types: pokemon.types.map(type => type.type.name).join(', '),
             image: pokemon.sprites.other['official-artwork'].front_default,
-            stats: pokemon.stats.map((stat: any) => ({
+            stats: pokemon.stats.map(stat => ({
                 name: stat.stat.name,
                 base: stat.base_stat,
             })),
-            abilities: pokemon.abilities.map((ability: any) => ability.ability.name),
+            abilities: pokemon.abilities.map(ability => ability.ability.name),
         }));
 
         const generations = await getGenerations();
         const types = await getTypes();
 
         if (pokemons.length === 0) {
-            res.status(204).send(); 
+            res.status(204).send();
         } else {
             res.render('catch', {
                 title: 'Catch Page',
