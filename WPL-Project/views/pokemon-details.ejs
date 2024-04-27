@@ -4,24 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
+    <link rel="stylesheet" href="/css/test.css">
+    <link rel="stylesheet" href="/css/reset.css">
 </head>
 <body>
-    <h1><%= pokemon.name %></h1>
-    <img src="<%= pokemon.image %>" alt="Image of <%= pokemon.name %>">
-    <p>ID: <%= pokemon.id %></p>
-    <p>Type: <%= pokemon.types.map(t => t.type.name).join(', ') %></p>
+    <header class="page-header">
+        <h1 class="main-title"><%= pokemon.name %>'s detail pagina</h1>
+        <hr>
+    </header>
 
-    <h2>Evolution Chain</h2>
-    <ul>
-        <% evolutionChain.forEach(evo => { %>
-            <li>
-                <img src="<%= evo.image %>" alt="<%= evo.name %>">
-                <p><%= evo.name %></p>
-            </li>
-        <% }); %>
-    </ul>
+    <main class="main-content">
+        <section class="pokemon-detail">
+            <div class="container">
+                <figure class="pokemon-image-container">
+                    <img class="pokemon-image" src="<%= pokemon.image %>" alt="Image of <%= pokemon.name %>">
+                </figure>
+                <div class="pokemon-info-container">
+                    <h1 class="pokemon-name"><%= pokemon.name %></h1>
+                    <p class="pokemon-id">ID: <%= pokemon.id %></p>
+                    <p class="pokemon-type">Type: <%= pokemon.types.map(t => t.type.name).join(', ') %></p>
+                    <section class="pokemon-stats">
+                        <ul>
+                            <% pokemon.stats.forEach(stat => { %>
+                                <li class="stat-item">
+                                    <span class="stat-label"><%= stat.stat.name.toUpperCase() %>:</span>
+                                    <span class="stat-value"><%= stat.base_stat %></span>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </section>
 
-    <button onclick="location.href='/catch?pokemon=<%= pokemon.id %>'">Catch</button>
-    <button onclick="location.href='/compare?pokemon=<%= pokemon.id %>'">Compare</button>
+        <section class="pokemon-buttons">
+            <button onclick="location.href='/catch?pokemon=<%= pokemon.id %>'">Catch</button>
+            <button onclick="location.href='/compare?pokemon=<%= pokemon.id %>'">Compare</button>
+        </section>
+
+        <aside class="pokemon-evolution">
+            <h2>Evolution Chain</h2>
+            <ul class="evolution-chain">
+                <% evolutionChain.forEach(evo => { %>
+                    <li>
+                        <figure>
+                            <img src="<%= evo.image %>" alt="<%= evo.name %>">
+                            <figcaption><%= evo.name %></figcaption>
+                        </figure>
+                    </li>
+                <% }); %>
+            </ul>
+        </aside>
+    </main>
+
+    <footer class="page-footer">
+        <p>&copy; <%= new Date().getFullYear() %> Pokeverse. All rights reserved.</p>
+    </footer>
 </body>
 </html>
