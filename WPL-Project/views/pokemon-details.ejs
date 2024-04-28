@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
+    <title>Catch Pokémon</title>
     <link rel="stylesheet" href="/css/test.css">
     <link rel="stylesheet" href="/css/reset.css">
+    <script src="/js/script.js" defer></script>
 </head>
+
 <body>
-    <header class="page-header">
-        <h1 class="main-title"><%= pokemon.name %>'s detail pagina</h1>
-        <hr>
+    <header>
+        <button id="hamburger" aria-label="Open navigation menu" class="hamburger">&#9776;</button>
+        <nav id="nav-menu" class="nav-menu">
+            <ul>
+                <li><a href="/catch">Pokemon Overview</a></li>
+                <li><a href="/compare">Compare Pokemon</a></li>
+                <li><a href="/guess">Guess</a></li>
+                <li><a href="/battler">Battler</a></li>
+            </ul>
+        </nav>
     </header>
+
 
     <main class="main-content">
         <section class="pokemon-detail">

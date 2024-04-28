@@ -104,7 +104,7 @@ const getEvolutionChain = async (url: string): Promise<EvolutionChain> => {
 };
 // Pokemon overview
 
-router.get("/catch", async (req: Request, res: Response) => {
+router.get("/pokemon-overview", async (req: Request, res: Response) => {
     const limit = 30;
     const page = parseInt(req.query.page as string) || 1;
     const offset = (page - 1) * limit;
@@ -143,8 +143,8 @@ router.get("/catch", async (req: Request, res: Response) => {
         if (pokemons.length === 0) {
             res.status(204).send();
         } else {
-            res.render('catch', {
-                title: 'Catch Page',
+            res.render('pokemon-overview', {
+                title: 'Pokemon-overview Page',
                 pokemons: pokemons,
                 generations: generations,
                 types: types,

@@ -1,43 +1,33 @@
 <!DOCTYPE html>
 <html lang="nl-BE">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch Pokémon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js" defer></script>
-    <title>Vechten</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <script src="/js/script.js" defer></script>
 </head>
-<body class="mainSitePages" id="comparePage">
+
+<body>
     <header>
-        <button class="sidebar-toggle">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-        <figure id="logo">
-            <a href="">
-                <img src="assets/pokeverse_logo.png" alt="Logo">
-            </a>
-        </figure>
-        <figure id="currentPokemon"> 
-            <a href="/ownpokemon">
-                <img src="assets/currentpokemon.gif" alt="currentPokemon">
-            </a>
-        </figure>
-    </header>
-    <aside class="navigation">
-        <nav>
-            <a href="/compare"><img src="assets/comparemenu.gif" alt="pokeball"> Pokémon Vergelijken</a>
-            <a href="/ownpokemon"><img src="assets/mypokemonmenu.gif" alt="pokeball"> Eigen Pokémon</a>
-            <a href="/battler"><img src="assets/batlermenu.gif" alt="pokeball"> Pokémon Vechten</a>
-            <a href="/guess"><img src="assets/guessmenu.gif" alt="pokeball"> Pokémon Raden</a>
-            <a href="/catch"><img src="assets/menuicon.gif" alt="pokeball"> Pokémon Vangen</a>
+        <button id="hamburger" aria-label="Open navigation menu" class="hamburger">&#9776;</button>
+        <nav id="nav-menu" class="nav-menu">
+            <ul>
+                <li><a href="/pokemon-overview">Pokemon Overview</a></li>
+                <li><a href="/compare">Compare Pokemon</a></li>
+                <li><a href="/guess">Guess</a></li>
+                <li><a href="/battler">Battler</a></li>
+            </ul>
         </nav>
-    </aside>
+    </header>
     <main class="mainMain">
         <h1>Pokemon Vechten</h1>
     <section class="mainarea">

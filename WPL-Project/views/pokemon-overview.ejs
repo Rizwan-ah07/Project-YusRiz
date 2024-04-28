@@ -1,0 +1,61 @@
+<%- include ('./partials/header.ejs') %>
+
+<section class="searchAndFilter">
+        <form id="searchForm" action="/search" method="get">
+            <input type="text" name="search" placeholder="Search Pokémon...">
+            <select name="generation">
+                <option value="">Any Generations</option>
+                <% generations.forEach(gen=> { %>
+                    <option value="<%= gen %>">
+                        <%= gen %>
+                    </option>
+                    <% }); %>
+            </select>
+            <select name="type">
+                <option value="">Any Types</option>
+                <% types.forEach(type=> { %>
+                    <option value="<%= type %>">
+                        <%= type %>
+                    </option>
+                    <% }); %>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <main>
+        <section class="pokemonContainer">
+            <% pokemons.forEach(pokemon=> { %>  <a
+                    href="/pokemon/<%= pokemon.id %>" class="pokemonCard" data-types="<%= pokemon.types %>"> <img
+                        src="<%= pokemon.image %>" alt="<%= pokemon.name %>" class="pokemonImage">
+                    <div class="pokemonInfo">
+                        <h2 class="pokemonName">
+                            <%= pokemon.name %> (#<%= pokemon.id %>)
+                        </h2>
+                        <p class="pokemonTypes">Type: <%= pokemon.types %>
+                        </p>
+                    </div>
+                </a>
+                <% }); %>
+        </section> <button id="loadMore" onclick="loadMore()">View More</button>
+    </main>
+
+    <%- include ('./partials/footer.ejs') %>
+<!--    <section class="catchPopup">
+        <button class="closeBtn">&times;</button>
+        <section>
+            <h2>Pikachu</h2>
+        <figure>
+            <img src="assets/compare2.gif" alt="Article Image">
+        </figure> 
+        <article class="catchStats">
+            <h2>Stats</h2>
+            <p>100</p>
+        </article> 
+        <article class="catchButton">
+            <button class="catchBtn"><img src="assets/pokeball.png" alt=""></button>
+        </article>
+        </section>
+    </section>
+    </main>
+    -->
