@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set('views', path.join(__dirname, "views"));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
-app.use("/api", pokemonRoutes)
+app.use("/", pokemonRoutes);
 app.set("port", process.env.PORT || 3000);
 
 // Database // MongoDB

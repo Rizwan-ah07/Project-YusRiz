@@ -3,21 +3,78 @@ body{
   color: #fff;
 }
 
+/* Hamburger menu */
+
+.hamburger {
+  background: none;
+  border: 0px;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  position: fixed; 
+  top: 10px; 
+  left: 10px; 
+  z-index: 2; 
+
+}
+
+.nav-menu {
+  height: 100%; 
+  width: 0; 
+  position: fixed; 
+  top: 0;
+  left: 0;
+  background-color: #2C3740; 
+  overflow-x: hidden; 
+  transition: 0.5s; 
+  padding-top: 60px; 
+}
+
+.nav-menu ul {
+  padding: 0;
+  list-style-type: none;
+  margin: 0;
+  margin: 10px;
+}
+
+.nav-menu a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #ffffff;
+  display: block;
+  transition: 0.3s;
+  margin: 30px;
+  width: 100%;
+}
+
+.nav-menu a:hover {
+  color: #f1f1f1;
+}
+
+.nav-menu.open {
+  width: 350px; 
+}
+
 /* catch.ejs */
 .pokemonContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
     gap: 20px; 
     padding: 20px;
+    text-decoration: none;
+    list-style: none;
   }
   
   .pokemonCard {
-    background: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex; 
     margin: 10px;
     overflow: hidden;
+    text-decoration: none;
+    list-style: none;
+    color: white;
   }
   
   .pokemonCard img {
@@ -325,6 +382,5 @@ footer {
   flex-direction: column;
   align-items: center;
 }
-
 }
 
