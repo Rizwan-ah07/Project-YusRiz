@@ -275,7 +275,7 @@ applyTypeBackgrounds();
 var currentPage = 1;
 function loadMore() {
     currentPage++;
-    fetch('/catch?page=' + currentPage)
+    fetch('/pokemon-overview?page=' + currentPage)
         .then(response => response.text())
         .then(html => {
             var tempDiv = document.createElement('div');
