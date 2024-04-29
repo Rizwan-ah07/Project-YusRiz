@@ -31,17 +31,24 @@
                     <img class="pokemon-image" src="<%= pokemon.image %>" alt="Image of <%= pokemon.name %>">
                 </figure>
                 <div class="pokemon-info-container">
-                    <h1 class="pokemon-name"><%= pokemon.name %></h1>
-                    <p class="pokemon-id">ID: <%= pokemon.id %></p>
-                    <p class="pokemon-type">Type: <%= pokemon.types.map(t => t.type.name).join(', ') %></p>
+                    <h1 class="pokemon-name">
+                        <%= pokemon.name %>
+                    </h1>
+                    <p class="pokemon-id">ID: <%= pokemon.id %>
+                    </p>
+                    <p class="pokemon-type">Type: <%= pokemon.types.map(t=> t.type.name).join(', ') %></p>
                     <section class="pokemon-stats">
                         <ul>
-                            <% pokemon.stats.forEach(stat => { %>
+                            <% pokemon.stats.forEach(stat=> { %>
                                 <li class="stat-item">
-                                    <span class="stat-label"><%= stat.stat.name.toUpperCase() %>:</span>
-                                    <span class="stat-value"><%= stat.base_stat %></span>
+                                    <span class="stat-label">
+                                        <%= stat.stat.name.toUpperCase() %>:
+                                    </span>
+                                    <span class="stat-value">
+                                        <%= stat.base_stat %>
+                                    </span>
                                 </li>
-                            <% }); %>
+                                <% }); %>
                         </ul>
                     </section>
                 </div>
@@ -56,14 +63,16 @@
         <aside class="pokemon-evolution">
             <h2>Evolution Chain</h2>
             <ul class="evolution-chain">
-                <% evolutionChain.forEach(evo => { %>
+                <% evolutionChain.forEach(evo=> { %>
                     <li>
                         <figure>
                             <img src="<%= evo.image %>" alt="<%= evo.name %>">
-                            <figcaption><%= evo.name %></figcaption>
+                            <figcaption>
+                                <%= evo.name %>
+                            </figcaption>
                         </figure>
                     </li>
-                <% }); %>
+                    <% }); %>
             </ul>
         </aside>
     </main>
@@ -72,4 +81,5 @@
         <p>&copy; <%= new Date().getFullYear() %> Pokeverse. All rights reserved.</p>
     </footer>
 </body>
+
 </html>

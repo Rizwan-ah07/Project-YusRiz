@@ -4,6 +4,7 @@ import path from "path";
 import fetch from 'node-fetch';
 import { connectToDatabase } from './database'; 
 import pokemonRoutes from "./routes/pokemon-overview"; // Ensure path is correct
+import { MongoClient } from "mongodb";
 
 dotenv.config();
 
