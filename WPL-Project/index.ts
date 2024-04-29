@@ -5,7 +5,7 @@ import axios from "axios";
 
 dotenv.config();
 
-const app : Express = express();
+const app: Express = express();
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -44,24 +44,27 @@ app.get("/battler", (req, res) => {
     });
 });
 
-
+// pokemon id
 const getPokemonDetails = async (id: number) => {
     const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
     return response.data;
-  };
+};
 
-  const getGenerations = async () => {
+// get pokemon generations
+const getGenerations = async () => {
     const response = await axios.get('https://pokeapi.co/api/v2/generation/');
     return response.data.results.map((gen: any) => gen.name);
 };
 
+//get pokemon types
 const getTypes = async () => {
     const response = await axios.get('https://pokeapi.co/api/v2/type/');
     return response.data.results.map((type: any) => type.name);
 };
-  
+
+// catch pokemon
 app.get("/catch", async (req, res) => {
-    const limit = 30;  
+    const limit = 30;
     const page = parseInt(req.query.page as string) || 1;
     const offset = (page - 1) * limit;
 
@@ -88,7 +91,7 @@ app.get("/catch", async (req, res) => {
         const types = await getTypes();
 
         if (pokemons.length === 0) {
-            res.status(204).send(); 
+            res.status(204).send();
         } else {
             res.render('catch', {
                 title: 'Catch Page',
@@ -104,6 +107,46 @@ app.get("/catch", async (req, res) => {
     }
 });
 
+// card detail pagina
+
+const getPokemonSpecies = async (id: number) => {
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
+    return response.data;
+};
+
+const getEvolutionChain = async (url: string) => {
+    const response = await axios.get(url);
+    return response.data;
+};
+
+const getPokemonEvolution = async (id: number) => {
+    const pokemonData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    const speciesData = await getPokemonSpecies(id);
+    const evolutionData = await getEvolutionChain(speciesData.evolution_chain.url);
+
+    const pokemon = pokemonData.data;
+    const officialArtworkUrl = pokemon.sprites.other['official-artwork'].front_default;
+
+    return {
+        pokemon: pokemon,
+        evolution: evolutionData,
+        officialArtworkUrl: officialArtworkUrl
+    };
+};
+
+app.get("/pokemon/:id", async (req, res) => {
+    const id = parseInt(req.params.id);
+    try {
+        const { pokemon, evolution } = await getPokemonEvolution(id);
+        res.render('carddetails', {  // Update this line to use the correct file name
+            pokemon: pokemon,
+            evolution_chain: evolution.chain // Ensure this data structure matches what you expect to render
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).render('error', { message: 'Error fetching Pokémon data.' });
+    }
+});
 
 app.get("/compare", (req, res) => {
     res.render("compare", {

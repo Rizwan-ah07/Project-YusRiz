@@ -39,18 +39,19 @@
 
     <main>
         <section class="pokemonContainer">
-            <% pokemons.forEach(pokemon=> { %>
-                <article class="pokemonCard" data-types="<%= pokemon.types %>">
-                    <img src="<%= pokemon.image %>" alt="<%= pokemon.name %>" class="pokemonImage">
-                    <div class="pokemonInfo">
-                        <h2 class="pokemonName">
-                            <%= pokemon.name %> (#<%= pokemon.id %>)
-                        </h2>
-                        <p class="pokemonTypes">Type: <%= pokemon.types %>
-                        </p>
-                    </div>
-                </article>
-                <% }); %>
+            <% pokemons.forEach(pokemon => { %>
+                <a href="/pokemon/<%= pokemon.id %>" class="pokemonCardLink">
+                    <article class="pokemonCard" data-types="<%= pokemon.types %>">
+                        <img src="<%= pokemon.image %>" alt="<%= pokemon.name %>" class="pokemonImage">
+                        <div class="pokemonInfo">
+                            <h2 class="pokemonName">
+                                <%= pokemon.name %> (#<%= pokemon.id %>)
+                            </h2>
+                            <p class="pokemonTypes">Type: <%= pokemon.types %></p>
+                        </div>
+                    </article>
+                </a>
+            <% }); %>
         </section>
         <button id="loadMore" onclick="loadMore()">View More</button>
     </main>
