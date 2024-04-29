@@ -66,7 +66,6 @@ app.get("/battler", (req, res) => {
     });
 });
 
-
 app.get("/compare", (req, res) => {
     res.render("compare", {
         title: "Compare Page"

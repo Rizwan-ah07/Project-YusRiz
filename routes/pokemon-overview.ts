@@ -112,7 +112,8 @@ router.get("/pokemon-overview", async (req: Request, res: Response) => {
 
 
     try {
-        const pokemonPromises = [];
+        const pokemonPromises: Promise<PokemonDetails>[] = [];
+
         // loop to get all pokemon based on their id
         for (let i = offset + 1; i <= offset + limit; i++) {
             pokemonPromises.push(getPokemonDetails(i));
