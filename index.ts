@@ -65,47 +65,6 @@ app.get("/battler", (req, res) => {
     });
 });
 
-// card detail pagina
-
-const getPokemonSpecies = async (id: number) => {
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
-    return response.data;
-};
-
-const getEvolutionChain = async (url: string) => {
-    const response = await axios.get(url);
-    return response.data;
-};
-
-const getPokemonEvolution = async (id: number) => {
-    const pokemonData = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    const speciesData = await getPokemonSpecies(id);
-    const evolutionData = await getEvolutionChain(speciesData.evolution_chain.url);
-
-    const pokemon = pokemonData.data;
-    const officialArtworkUrl = pokemon.sprites.other['official-artwork'].front_default;
-
-    return {
-        pokemon: pokemon,
-        evolution: evolutionData,
-        officialArtworkUrl: officialArtworkUrl
-    };
-};
-
-app.get("/pokemon/:id", async (req, res) => {
-    const id = parseInt(req.params.id);
-    try {
-        const { pokemon, evolution } = await getPokemonEvolution(id);
-        res.render('carddetails', {  // Update this line to use the correct file name
-            pokemon: pokemon,
-            evolution_chain: evolution.chain // Ensure this data structure matches what you expect to render
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('error', { message: 'Error fetching Pokémon data.' });
-    }
-});
-
 app.get("/compare", (req, res) => {
     res.render("compare", {
         title: "Compare Page"
