@@ -1,11 +1,14 @@
-import express, { Express } from "express";
+import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import path from "path";
-import axios from "axios";
+import fetch from 'node-fetch';
+import { connectToDatabase } from './database'; 
+import pokemonRoutes from "./routes/pokemon-overview"; // Ensure path is correct
 
 dotenv.config();
 
-const app: Express = express();
+// Express
+const app : Express = express();
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -14,7 +17,25 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set('views', path.join(__dirname, "views"));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
+app.use("/", pokemonRoutes);
 app.set("port", process.env.PORT || 3000);
+
+// Database // MongoDB
+
+async function main() {
+    try {
+        await connectToDatabase();
+        console.log("Connected to MongoDB Atlas from index.ts!");
+
+        // Perform your database operations here (if needed in index.ts)
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+main();
+
+// Routes
 
 app.get("/", (req, res) => {
     res.render("index", {
@@ -42,69 +63,6 @@ app.get("/battler", (req, res) => {
     res.render("battler", {
         title: "Battler Page"
     });
-});
-
-// pokemon id
-const getPokemonDetails = async (id: number) => {
-    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    return response.data;
-};
-
-// get pokemon generations
-const getGenerations = async () => {
-    const response = await axios.get('https://pokeapi.co/api/v2/generation/');
-    return response.data.results.map((gen: any) => gen.name);
-};
-
-//get pokemon types
-const getTypes = async () => {
-    const response = await axios.get('https://pokeapi.co/api/v2/type/');
-    return response.data.results.map((type: any) => type.name);
-};
-
-// catch pokemon
-app.get("/catch", async (req, res) => {
-    const limit = 30;
-    const page = parseInt(req.query.page as string) || 1;
-    const offset = (page - 1) * limit;
-
-    try {
-        const pokemonPromises = [];
-        for (let i = offset + 1; i <= offset + limit; i++) {
-            pokemonPromises.push(getPokemonDetails(i));
-        }
-        const pokemonsDetails = await Promise.all(pokemonPromises);
-
-        const pokemons = pokemonsDetails.map(pokemon => ({
-            id: pokemon.id,
-            name: pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1),
-            types: pokemon.types.map((type: any) => type.type.name).join(', '),
-            image: pokemon.sprites.other['official-artwork'].front_default,
-            stats: pokemon.stats.map((stat: any) => ({
-                name: stat.stat.name,
-                base: stat.base_stat,
-            })),
-            abilities: pokemon.abilities.map((ability: any) => ability.ability.name),
-        }));
-
-        const generations = await getGenerations();
-        const types = await getTypes();
-
-        if (pokemons.length === 0) {
-            res.status(204).send();
-        } else {
-            res.render('catch', {
-                title: 'Catch Page',
-                pokemons: pokemons,
-                generations: generations,
-                types: types,
-                nextPage: page + 1
-            });
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('error', { message: 'Error fetching Pokémon data.' });
-    }
 });
 
 // card detail pagina
