@@ -18,6 +18,9 @@
             <input type="password" name="Password" placeholder="Wachtwoord" required>
             <input type="submit">
         </form>
+        <% if (typeof error !== 'undefined' && error) { %>
+            <p style="color:red;"><%= error %></p>
+        <% } %>
         <p>Geen account?<a href="/signup"> klik hier </a>om een account aan te maken</p>
     </section>
 </body>

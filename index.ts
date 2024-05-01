@@ -6,6 +6,7 @@ import { connectToDatabase } from './database';
 import pokemonRoutes from "./routes/pokemon-overview"; 
 import loginRoute from "./routes/login";
 import signupRoute from "./routes/signup";
+import session from 'express-session';
 import { MongoClient } from "mongodb";
 
 dotenv.config();
@@ -39,6 +40,15 @@ async function main() {
 }
 
 main();
+
+// remain logged in
+
+app.use(session({
+    secret: 'your-secret', // change this to a secret phrase
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // set true if using https
+}));
 
 // Routes
 
