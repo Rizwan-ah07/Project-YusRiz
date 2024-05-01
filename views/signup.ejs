@@ -13,9 +13,9 @@
 <body id="loginPageBody">
     <section id="loginSection">
         <h1>Account Aanmaken</h1>
-        <form action="/login">
-            <input type="text" placeholder="Gebruikersnaam" required>
-            <input type="password" placeholder="Wachtwoord" required>
+        <form action="/signup" method="post">
+            <input type="text" name="Username" placeholder="Gebruikersnaam" required>
+            <input type="password" name="Password" placeholder="Wachtwoord" required>
             <input type="submit">
         </form>
         <p>Heb je al een account?<a href="/login"> klik hier </a>om in te loggen</p>

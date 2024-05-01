@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 import path from "path";
 import fetch from 'node-fetch';
 import { connectToDatabase } from './database'; 
-import pokemonRoutes from "./routes/pokemon-overview"; // Ensure path is correct
+import pokemonRoutes from "./routes/pokemon-overview"; 
+import loginRoute from "./routes/login";
+import signupRoute from "./routes/signup";
 import { MongoClient } from "mongodb";
 
 dotenv.config();
@@ -19,6 +21,8 @@ app.set('views', path.join(__dirname, "views"));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 app.use("/", pokemonRoutes);
+app.use("/login", loginRoute)
+app.use("/signup", signupRoute)
 app.set("port", process.env.PORT || 3000);
 
 // Database // MongoDB
@@ -43,20 +47,6 @@ app.get("/", (req, res) => {
         title: "Home",
         message: "Home Page"
     })
-});
-
-
-app.get("/login", (req, res) => {
-    res.render("login", {
-        title: "Login Page"
-    });
-});
-
-
-app.get("/signup", (req, res) => {
-    res.render("signup", {
-        title: "Signup Page"
-    });
 });
 
 

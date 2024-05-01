@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 
 const uri = "mongodb+srv://s151398:Rizwan@wpl-project.1v5hog1.mongodb.net/"; 
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+export const client = new MongoClient(uri);
 
 export async function connectToDatabase() {
     try {
