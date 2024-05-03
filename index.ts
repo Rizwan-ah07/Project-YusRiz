@@ -6,6 +6,7 @@ import { connectToDatabase } from './database';
 import pokemonRoutes from "./routes/pokemon-overview"; 
 import loginRoute from "./routes/login";
 import signupRoute from "./routes/signup";
+import compareRoute from "./routes/compare";
 import session from 'express-session';
 import { MongoClient } from "mongodb";
 
@@ -22,8 +23,9 @@ app.set('views', path.join(__dirname, "views"));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 
 app.use("/", pokemonRoutes);
-app.use("/login", loginRoute)
-app.use("/signup", signupRoute)
+app.use("/login", loginRoute);
+app.use("/signup", signupRoute);
+app.use('/', compareRoute);
 app.set("port", process.env.PORT || 3000);
 
 // Database // MongoDB
@@ -63,12 +65,6 @@ app.get("/", (req, res) => {
 app.get("/battler", (req, res) => {
     res.render("battler", {
         title: "Battler Page"
-    });
-});
-
-app.get("/compare", (req, res) => {
-    res.render("compare", {
-        title: "Compare Page"
     });
 });
 

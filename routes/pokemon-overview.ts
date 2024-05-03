@@ -6,7 +6,7 @@ const router = express.Router();
 
 // pokemon detail for overview page
 
-const getPokemonDetails = async (id: number): Promise<PokemonDetails> => {
+export const getPokemonDetails = async (id: number): Promise<PokemonDetails> => {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -78,6 +78,15 @@ const getPokemonDetailsAndEvolutions = async (id: number): Promise<{ pokemon: Po
     const pokemon: PokemonDetails = await getPokemonDetails(id);
     return { pokemon, evolutionChain };
 };
+
+const getEvolutionChain = async (url: string): Promise<EvolutionChain> => {
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data as EvolutionChain;
+};
 // Pokemon details
 router.get("/pokemon/:id", async (req, res) => {
     try {
@@ -94,14 +103,7 @@ router.get("/pokemon/:id", async (req, res) => {
     }
 });
 
-const getEvolutionChain = async (url: string): Promise<EvolutionChain> => {
-    const response = await fetch(url);
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
-    return data as EvolutionChain;
-};
+
 // Pokemon overview
 
 router.get("/pokemon-overview", async (req: Request, res: Response) => {
