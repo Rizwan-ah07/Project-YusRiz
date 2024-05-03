@@ -24,11 +24,21 @@ router.get("/compare", async (req: Request, res: Response) => {
         try {
             const data1 = await getPokemon(pokemon1 as string);
             const data2 = await getPokemon(pokemon2 as string);
+
+            // Calculating differences in stats
+            const statsDiff = data1.stats.map((stat: { stat: { name: any; }; base_stat: number; }, index: string | number) => {
+                return {
+                    name: stat.stat.name,
+                    diff: stat.base_stat - data2.stats[index].base_stat
+                };
+            });
+
             res.render("compare", {
                 title: "Compare Pokémon",
                 form: false, // No need to display the form
                 pokemon1: data1,
-                pokemon2: data2
+                pokemon2: data2,
+                statsDiff  // Pass the stats differences to the template
             });
         } catch (error) {
             console.error("Failed to fetch Pokémon data:", error);

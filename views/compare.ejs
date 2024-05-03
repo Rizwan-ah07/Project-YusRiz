@@ -4,22 +4,23 @@
     <% if (form) { %>
         <!-- Form Section -->
         <section>
-            <form action="/compare" method="get">
+            <form class ="compare-form" action="/compare" method="get">
                 <div class="form-group">
                     <label for="pokemon1">Enter first Pokémon:</label>
                     <input type="text" id="pokemon1" name="pokemon1" placeholder="Type first Pokémon name..." autocomplete="off" required>
                     <div id="suggestions1" class="suggestions"></div>
-                </div>
-                <div class="form-group">
+                  </div>
+                  <div class="form-group">
                     <label for="pokemon2">Enter second Pokémon:</label>
                     <input type="text" id="pokemon2" name="pokemon2" placeholder="Type second Pokémon name..." autocomplete="off" required>
                     <div id="suggestions2" class="suggestions"></div>
-                </div>
-                <button type="submit" class="compare-btn">Compare</button>
+                  </div>
+                  <button type="submit" class="compare-btn">Compare</button>
             </form>
         </section>
     <% } else { %>
-        <% [pokemon1, pokemon2].forEach(pokemon => { %>
+                <!-- Compare Section -->
+        <% [pokemon1, pokemon2].forEach((pokemon, index) => { %>
             <div class="pokemon-card">
                 <div class="pokemon-header">
                     <img src="<%= pokemon.sprites.other['official-artwork'].front_default %>" alt="<%= pokemon.name %>" style="width: 150px;">
@@ -30,8 +31,22 @@
                     <p><strong>Ability:</strong> <%= pokemon.abilities.map(ability => ability.ability.name).join(', ') %></p>
                     <div class="compare-stats">
                         <h3>Stats</h3>
-                        <% pokemon.stats.forEach(stat => { %>
-                            <p><span><%= stat.stat.name %>:</span> <span><%= stat.base_stat %></span></p>
+                        <% statsDiff.forEach((stat, idx) => { %>
+                            <p>
+                                <span class="stat-name"><%= stat.name %>:</span>
+                                <span class="stat-value">
+                                    <%= index === 0 ? pokemon.stats[idx].base_stat : pokemon.stats[idx].base_stat %>
+                                    <% if (index === 0) { %>
+                                        <span style="color: <%= stat.diff > 0 ? 'green' : 'red' %>;">
+                                            <%= stat.diff > 0 ? '+' + stat.diff : stat.diff %>
+                                        </span>
+                                    <% } else { %>
+                                        <span style="color: <%= stat.diff < 0 ? 'green' : 'red' %>;">
+                                            <%= stat.diff < 0 ? '-' + (-stat.diff) : '+' + stat.diff %>
+                                        </span>
+                                    <% } %>
+                                </span>
+                            </p>
                         <% }); %>
                     </div>
                 </div>
@@ -69,64 +84,5 @@ document.querySelectorAll('input[type="text"]').forEach(input => {
     });
 });
 </script>
-
-<style>
-.suggestions {
-    position: absolute;
-    border: 1px solid #ccc;
-    z-index: 10;
-    width: calc(100% - 20px);
-    display: none;
-}
-
-.suggestions div {
-    padding: 8px;
-    cursor: pointer;
-    text-align: left;
-}
-
-    .form-group {
-    margin-bottom: 20px;
-}
-
-.pokemon-card {
-    width: 300px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.pokemon-header {
-
-    padding: 10px;
-    text-align: center;
-}
-
-.pokemon-details {
-    padding: 15px;
-    line-height: 1.6;
-}
-
-.compare-stats {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid #e0e0e0;
-}
-
-.compare-stats p {
-    display: flex;
-    justify-content: space-between; /* This pushes the label and number apart */
-    margin: 5px 0;
-}
-
-.compare-stats h3 {
-    margin-bottom: 10px;
-}
-.pokemon-card img {
-    max-width: 100%;
-    height: auto;
-}
-</style>
 
 <%- include('./partials/footer.ejs') %>
