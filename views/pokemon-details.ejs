@@ -67,7 +67,7 @@
                     <li>
                         <figure>
                             <img src="<%= evo.image %>" alt="<%= evo.name %>">
-                            <figcaption>
+                            <figcaption class="evolution-name">
                                 <%= evo.name %>
                             </figcaption>
                         </figure>
@@ -77,9 +77,4 @@
         </aside>
     </main>
 
-    <footer class="page-footer">
-        <p>&copy; <%= new Date().getFullYear() %> Pokeverse. All rights reserved.</p>
-    </footer>
-</body>
-
-</html>
+    <%- include ('./partials/footer.ejs') %>
