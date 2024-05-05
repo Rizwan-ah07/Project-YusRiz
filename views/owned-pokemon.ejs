@@ -1,0 +1,24 @@
+<%- include ('./partials/header.ejs') %>
+
+<h1>Owned Pokémon</h1>
+<main>
+    <section class="pokemonContainer">
+        <% pokemons.forEach(pokemon => { %>
+            <a href="/owned-pokemon-details/<%= pokemon.id %>" class="pokemonCard" data-types="<%= pokemon.types %>">
+                <img src="<%= pokemon.image %>" alt="<%= pokemon.nickname %>" class="pokemonImage">
+                <div class="pokemonInfo">
+                    <h2 class="pokemonName">
+                        <%= pokemon.nickname %> (#<%= pokemon.id %>)
+                    </h2>
+                    <h3 class="pokemonName">
+                        <%= pokemon.name %>
+                    </h3>
+                    <p class="pokemonTypes">Caught at: <%= new Date(pokemon.caughtAt).toLocaleString() %>
+                    </p>
+                </div>
+            </a>
+        <% }) %>
+    </section>
+</main>
+
+<%- include ('./partials/footer.ejs') %>

@@ -9,6 +9,7 @@ import loginRoute from "./routes/login";
 import signupRoute from "./routes/signup";
 import compareRoute from "./routes/compare";
 import guessRoute from "./routes/guess";
+import ownedPokemonRoute from './routes/owned-pokemon';
 import { MongoClient } from "mongodb";
 
 dotenv.config();
@@ -26,10 +27,10 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 // remain logged in
 
 app.use(session({
-    secret: 'your-secret', // change this to a secret phrase
+    secret: 'your-secret-key',
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false } // set true if using https
+    saveUninitialized: false, // Only save sessions when initialized
+    cookie: { secure: false } // Set to `true` if using HTTPS
 }));
 
 app.use("/", pokemonRoutes);
@@ -37,6 +38,7 @@ app.use("/login", loginRoute);
 app.use("/signup", signupRoute);
 app.use('/', compareRoute);
 app.use('/guess', guessRoute); 
+app.use('/', ownedPokemonRoute);
 app.set("port", process.env.PORT || 3000);
 
 // Database // MongoDB

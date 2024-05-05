@@ -1,0 +1,46 @@
+<%- include ('./partials/header.ejs') %>
+<main class="main-content">
+    <h1 class="main-title">Pokémon Details: <%= pokemon.nickname %> (#<%= pokemon.id %>)</h1>
+    <section class="pokemon-detail">
+        <div class="container">
+            <figure class="pokemon-image-container">
+                <img class="pokemon-image" src="<%= pokemon.image %>" alt="Image of <%= pokemon.nickname %>">
+            </figure>
+            <div class="pokemon-info-container">
+                <h1 class="pokemon-name">
+                    <%= pokemon.nickname %> (#<%= pokemon.id %>)
+                </h1>
+                <h2 class="pokemon-name">
+                    <%= pokemon.name %>
+                </h2>
+                <p class="pokemon-id">ID: <%= pokemon.id %>
+                </p>
+                <p class="pokemon-type">Caught at: <%= new Date(pokemon.caughtAt).toLocaleString() %></p>
+                <section class="pokemon-stats">
+                    <ul>
+                        <% if (pokemon.stats) { %>
+                            <% pokemon.stats.forEach(stat => { %>
+                                <li class="stat-item">
+                                    <span class="stat-label">
+                                        <%= stat.name.toUpperCase() %>:
+                                    </span>
+                                    <span class="stat-value">
+                                        <%= stat.base_stat %>
+                                    </span>
+                                </li>
+                            <% }) %>
+                        <% } else { %>
+                            <li>No stats available.</li>
+                        <% } %>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </section>
+
+    <section class="pokemon-buttons">
+        <button onclick="location.href='/owned-pokemon'">Back to List</button>
+    </section>
+</main>
+
+<%- include ('./partials/footer.ejs') %>
