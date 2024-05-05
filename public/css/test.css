@@ -142,11 +142,12 @@ body{
   overflow-x: hidden;
 }
 
-
-
-
-
-
+h1 {
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
 
 /* Hamburger menu */
 
@@ -160,7 +161,6 @@ body{
   top: 10px; 
   left: 10px; 
   z-index: 2; 
-
 }
 
 .nav-menu {
@@ -549,7 +549,7 @@ footer {
 
 .form-group input[type="text"] {
   width: 100%;
-  padding: 10px 5px;  /* Added padding for better usability */
+  padding: 10px 5px;  
 }
 
 /* Styles for the compare button within the form */
@@ -557,7 +557,7 @@ footer {
   align-self: center;
   margin-top: 20px;
   padding: 10px 20px;
-  cursor: pointer; /* Enhances usability indicating it's clickable */
+  cursor: pointer; 
 }
 
 /* Styles for the suggestions dropdown */
@@ -641,7 +641,6 @@ footer {
   font-weight: bold;
 }
 
-/* Responsive styles for different screen sizes */
 @media (max-width: 700px) {
   main {
       flex-direction: column;
@@ -657,5 +656,117 @@ footer {
 @media (max-width: 480px) {
   .pokemon-card {
       width: 95%;
+  }
+}
+
+/* Guess.ejs */
+
+.guess-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.guess-container {
+  text-align: center;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  background: #3C4B55;
+  border-radius: 8px;
+}
+.silhouette {
+  filter: brightness(0) invert(1);
+  max-width: 500px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+.message, .scoreboard {
+  font-size: 20px;
+  margin-top: 10px;
+}
+.guess-form {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.guess-input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  width: 180px;
+}
+.guess-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.guess-submit-button {
+  background-color: #4CAF50;
+  color: #fff;
+}
+.skip-button {
+  background-color: #f44336;
+  color: #fff;
+}
+.autocomplete-list {
+  position: absolute;
+  background-color: white;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+  width: 180px;
+  border: 1px solid #999;
+  display: none;
+}
+.autocomplete-item {
+  cursor: pointer;
+  padding: 5px;
+  color: black;
+}
+.autocomplete-item:hover {
+  background-color: #eee;
+}
+
+@media screen and (max-width: 768px) {
+  .guess-container {
+      padding: 15px;
+      width: 90%;
+  }
+
+  .silhouette {
+      max-width: 300px;
+  }
+
+  h1 {
+      font-size: 1.8em;
+      margin-bottom: 15px;
+  }
+
+  .guess-form {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 5px;
+  }
+
+  .guess-input {
+      width: 95%;
+  }
+
+  .guess-button {
+      width: 100%;
+      margin-right: 0;
+  }
+
+  .autocomplete-list {
+      width: 100%;
+  }
+
+  .scoreboard {
+      font-size: 16px;
   }
 }

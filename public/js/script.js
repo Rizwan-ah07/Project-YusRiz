@@ -294,4 +294,73 @@ function loadMore() {
         .catch(err => console.error('Error loading more Pokémon:', err));
 }
 
+// Guess Pokemon
 
+document.getElementById('guess-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    const response = await fetch('/guess/guess', {
+        method: 'POST',
+        body: new URLSearchParams(data)
+    });
+    const result = await response.json();
+    document.getElementById('message').textContent = result.message;
+    updatePokemon(result.nextPokemon);
+    updateScoreboard(result.score);
+    clearAutocomplete();
+});
+
+document.getElementById('skip-button').addEventListener('click', async () => {
+    const response = await fetch('/guess/skip', { method: 'POST' });
+    const result = await response.json();
+    document.getElementById('message').textContent = result.message;
+    updatePokemon(result.nextPokemon);
+    updateScoreboard(result.score);
+    clearAutocomplete();
+});
+
+function updatePokemon(pokemon) {
+    document.getElementById('pokemon-silhouette').src = pokemon.silhouetteImage;
+    document.querySelector('input[name="correctName"]').value = pokemon.correctName;
+    document.getElementById('guess').value = '';
+    clearAutocomplete();
+}
+
+function updateScoreboard(score) {
+    document.getElementById('scoreboard').textContent = `Correct: ${score.correct} | Incorrect: ${score.incorrect}`;
+}
+
+document.getElementById('guess').addEventListener('input', async function () {
+    const value = this.value.toLowerCase();
+    const response = await fetch(`/guess/search-pokemon?q=${value}`);
+    const suggestions = await response.json();
+    showSuggestions(suggestions, this);
+});
+
+function showSuggestions(suggestions, input) {
+    const list = document.getElementById('autocomplete-list');
+    list.innerHTML = '';
+
+    if (suggestions.length > 0) {
+        suggestions.forEach(name => {
+            const item = document.createElement('li');
+            item.textContent = name;
+            item.className = 'autocomplete-item';
+            item.addEventListener('click', () => {
+                input.value = name;
+                clearAutocomplete();
+            });
+            list.appendChild(item);
+        });
+        list.style.display = 'block';
+    } else {
+        list.style.display = 'none';
+    }
+}
+
+function clearAutocomplete() {
+    const list = document.getElementById('autocomplete-list');
+    list.innerHTML = '';
+    list.style.display = 'none';
+}
