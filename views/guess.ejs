@@ -1,58 +1,19 @@
-<!DOCTYPE html>
-<html lang="nl-BE">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catch Pokémon</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/reset.css">
-    <script src="/js/script.js" defer></script>
-</head>
-
-<body>
-    <header>
-        <button id="hamburger" aria-label="Open navigation menu" class="hamburger">&#9776;</button>
-        <nav id="nav-menu" class="nav-menu">
-            <ul>
-                <li><a href="/pokemon-overview">Pokemon Overview</a></li>
-                <li><a href="/compare">Compare Pokemon</a></li>
-                <li><a href="/guess">Guess</a></li>
-                <li><a href="/battler">Battler</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main class="mainMain">
-        <h1>Pokemon Raden????</h1>
-    <section class="mainarea">
-        <section class="guessSection">
-            <figure class="guessImage">
-                <img src="assets/compare2.gif" alt="pokemon2">
-            </figure>
-            <article class="guessInfo"> 
-                <h2 class="silverUnderline">Welke Pokemon???</h2>
-                <form class="guessInput" action="">
-                    <input placeholder="Typ hier...." type="text">
-                </form>
-            </article>
-        </section>
+<%- include ('./partials/header.ejs') %>
+    <section class="guess-page">
+        <div class="guess-container">
+            <h1>Who's That Pokémon?</h1>
+            <img id="pokemon-silhouette" src="<%= silhouetteImage %>" alt="Pokémon silhouette" class="silhouette">
+            <div class="scoreboard" id="scoreboard">
+                Correct: <%= score.correct %> | Incorrect: <%= score.incorrect %>
+            </div>
+            <form id="guess-form" class="guess-form">
+                <input type="hidden" name="correctName" value="<%= correctName %>">
+                <input type="text" name="guess" id="guess" placeholder="Enter Pokémon name" class="guess-input" autocomplete="off">
+                <ul id="autocomplete-list" class="autocomplete-list"></ul>
+                <button type="submit" class="guess-button guess-submit-button">Guess!</button>
+                <button type="button" id="skip-button" class="guess-button skip-button">Skip</button>
+            </form>
+            <div class="message" id="message"></div>
+        </div>
     </section>
-    <article class="guessButton">
-        <button>Checken</button>
-    </article>
-    <article class="guessScore">
-        <p>Correcte antwoorden: 0</p>
-        <p>Foute antwoorden: 0</p>
-    </article>
-</main>
-    <footer>
-        <p>&copy; <span id="currentYear"></span> Pokeverse. Alle rechten voorbehouden.</p>
-    </footer>
-</body>
-</html>
+    <%- include ('./partials/footer.ejs') %>
