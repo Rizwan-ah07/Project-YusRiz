@@ -1,35 +1,43 @@
-import express, { Express, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import bcrypt from 'bcrypt';
+import { ObjectId } from 'mongodb';
 import { client } from "../database";
+
+// Extend session data directly in the file
+declare module 'express-session' {
+    interface SessionData {
+        userId: string;
+    }
+}
 
 const router = express.Router();
 
 router.get("/", (req, res) => {
     res.render("login", {
         title: "Login Page",
-        error: "" // No error message initially
+        error: "" 
     });
 });
 
-router.post("/", async (req, res) => {
+router.post("/", async (req: Request, res: Response) => {
     const { Username, Password } = req.body;
 
     try {
         const user = await client.db("YusRiz").collection("Users").findOne({ username: Username });
         if (user && await bcrypt.compare(Password, user.password)) {
-            res.redirect("/pokemon-overview"); // Authentication successful
+            req.session.userId = user._id.toString(); 
+            res.redirect("/owned-pokemon");
         } else {
-            // Render the login page again with an error message
             res.render("login", {
                 title: "Login Page",
-                error: "Incorrect username or password" // Provide a user-friendly error message
+                error: "Incorrect username or password"
             });
         }
     } catch (error) {
         console.error(error);
         res.render("login", {
             title: "Login Page",
-            error: "Server error" // Handle server errors separately
+            error: "Server error"
         });
     }
 });

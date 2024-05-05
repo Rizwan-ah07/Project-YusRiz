@@ -1,15 +1,20 @@
-const { MongoClient } = require('mongodb');
+// database.ts
+import { MongoClient, Db, Collection } from 'mongodb';
 
-const uri = "mongodb+srv://s151398:Rizwan@wpl-project.1v5hog1.mongodb.net/"; 
+const uri = process.env.MONGODB_URI || "mongodb+srv://s151398:Rizwan@wpl-project.1v5hog1.mongodb.net/";
 export const client = new MongoClient(uri);
 
-export async function connectToDatabase() {
+export async function connectToDatabase(): Promise<{ db: Db, usersCollection: Collection }> {
     try {
         await client.connect();
         console.log("Connected to MongoDB Atlas!");
-        // Perform your database operations here (e.g., insert, find, update, delete)
+
+        const db = client.db('YusRiz');
+        const usersCollection = db.collection('Users');
+
+        return { db, usersCollection };
     } catch (err) {
         console.error("Failed to connect to MongoDB Atlas:", err);
-        throw err; 
+        throw err;
     }
 }

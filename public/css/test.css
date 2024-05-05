@@ -202,7 +202,7 @@ h1 {
   width: 350px;
 }
 
-/* catch.ejs */
+/* pokemon-overview.ejs */
 .pokemonContainer {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
