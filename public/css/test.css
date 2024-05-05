@@ -157,22 +157,23 @@ h1 {
   color: #fff;
   font-size: 2rem;
   cursor: pointer;
-  position: fixed; 
-  top: 10px; 
-  left: 10px; 
-  z-index: 2; 
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000; 
 }
 
 .nav-menu {
-  height: 100%; 
-  width: 0; 
-  position: fixed; 
+  height: 100%;
+  width: 0;
+  position: fixed;
   top: 0;
   left: 0;
-  background-color: #2C3740; 
-  overflow-x: hidden; 
-  transition: 0.5s; 
-  padding-top: 60px; 
+  background-color: #2C3740;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  z-index: 999; 
 }
 
 .nav-menu ul {
@@ -198,7 +199,7 @@ h1 {
 }
 
 .nav-menu.open {
-  width: 350px; 
+  width: 350px;
 }
 
 /* catch.ejs */
