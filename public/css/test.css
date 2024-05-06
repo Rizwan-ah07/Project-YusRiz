@@ -79,55 +79,68 @@ width: 100%;
 
 /* Signup and Login */
 
-#loginBody{
+#loginBody {
   background-image: url("/assets/login_background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   overflow: hidden;
-  margin: 0;
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-#loginSection{
-  width: auto;
-  margin: 50vh auto;
+#loginSection {
+  max-width: 400px; /* Adjust the max-width to fit your needs */
+  width: 100%;
+  margin: auto;
   background-color: #F2D544;
   border-radius: 5px;
-  padding: 10px 30px;
-  height: 130px;
+  padding: 30px;
   box-shadow: 10px 10px 10px #2C3740;
+  text-align: center;
+  color: 2C3740;
 }
 
-#loginSection h1{
+#loginSection h1 {
   font-size: 2.5em;
   font-weight: bold;
   color: #2C3740;
 }
 
-#loginSection form input{
-  padding: 15px;
+#loginSection form input {
+  width: 100%; /* Make inputs fill the available width */
+  padding: 10px;
   margin: 10px 0;
   border: none;
   border-radius: 5px;
 }
 
-#loginSection p{
+#loginSection form input[type="submit"] {
+  background-color: #2C3740;
+  color: #F2D544;
   font-weight: bold;
+  cursor: pointer;
+}
+
+#loginSection p {
+  font-weight: bold;
+  color: #2C3740;
 }
 
 @media only screen and (max-width: 600px) {
-  #loginSection{
-      display: flex;
-      flex-direction: column;
-      height: 270px;
-      width: 80vw;
+  #loginSection {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: auto;
   }
-  #loginSection form{
-      display: flex;
-      flex-direction: column;
+
+  #loginSection form {
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -770,4 +783,16 @@ footer {
   .scoreboard {
       font-size: 16px;
   }
+}
+
+.current-pokemon-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.header-right {
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }

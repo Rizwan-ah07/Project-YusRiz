@@ -4,7 +4,7 @@
 <main>
     <section class="pokemonContainer">
         <% pokemons.forEach(pokemon => { %>
-            <a href="/owned-pokemon-details/<%= pokemon.id %>" class="pokemonCard" data-types="<%= pokemon.types %>">
+            <a href="/owned-pokemon-details/<%= pokemon.id %>" class="pokemonCard <%= pokemon.id === currentPokemon ? 'current' : '' %>" data-types="<%= pokemon.types %>">
                 <img src="<%= pokemon.image %>" alt="<%= pokemon.nickname %>" class="pokemonImage">
                 <div class="pokemonInfo">
                     <h2 class="pokemonName">

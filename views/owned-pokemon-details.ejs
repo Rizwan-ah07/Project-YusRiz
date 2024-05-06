@@ -39,6 +39,11 @@
     </section>
 
     <section class="pokemon-buttons">
+        <form action="/set-current-pokemon" method="POST">
+            <input type="hidden" name="userId" value="<%= userId %>">
+            <input type="hidden" name="pokemonId" value="<%= pokemon.id %>">
+            <button type="submit">Set as Current Pokémon</button>
+        </form>
         <button onclick="location.href='/owned-pokemon'">Back to List</button>
     </section>
 </main>
