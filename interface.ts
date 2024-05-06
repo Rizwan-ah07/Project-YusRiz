@@ -1,4 +1,6 @@
 // interfaces.ts
+import { ObjectId } from "mongodb";
+
 export interface Pokemon {
     id: number;
     name: string;
@@ -52,8 +54,9 @@ export interface OwnedPokemon {
 }
 
 export interface User {
-    _id: string;
+    _id: ObjectId; // Ensure this is of type ObjectId
     username: string;
     password: string;
     ownedPokemon: OwnedPokemon[];
+    currentPokemon: number | null;
 }

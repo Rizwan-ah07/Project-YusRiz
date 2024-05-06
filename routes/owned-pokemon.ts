@@ -80,15 +80,19 @@ router.get('/owned-pokemon', async (req: Request, res: Response) => {
         const user = await usersCollection.findOne({ _id: new ObjectId(userId) }) as User | null;
 
         if (!user || !user.ownedPokemon) {
-            return res.render('owned-pokemon', { title: 'Owned Pokémon', pokemons: [] });
+            return res.render('owned-pokemon', { title: 'Owned Pokémon', pokemons: [], currentPokemon: null });
         }
 
         const sortedPokemons = user.ownedPokemon.sort((a: OwnedPokemon, b: OwnedPokemon) => a.id - b.id);
         const pokemonsWithDetails = await fetchAndAttachPokemonDetails(sortedPokemons);
+        const currentPokemon = user.currentPokemon
+            ? pokemonsWithDetails.find((pokemon: OwnedPokemon) => pokemon.id === user.currentPokemon)
+            : null;
 
         res.render('owned-pokemon', {
             title: 'Owned Pokémon',
-            pokemons: pokemonsWithDetails
+            pokemons: pokemonsWithDetails,
+            currentPokemon
         });
     } catch (err) {
         console.error("Owned Pokémon error:", err);
@@ -125,11 +129,35 @@ router.get('/owned-pokemon-details/:id', async (req: Request, res: Response) => 
 
         res.render('owned-pokemon-details', {
             title: `Details of ${pokemonWithDetails.nickname}`,
-            pokemon: pokemonWithDetails
+            pokemon: pokemonWithDetails,
+            userId
         });
     } catch (err) {
         console.error("Owned Pokémon details error:", err);
         res.status(500).render('error', { title: 'Error', message: 'Error fetching Pokémon details.' });
+    }
+});
+
+// Route to set the current Pokémon
+router.post('/set-current-pokemon', async (req: Request, res: Response) => {
+    const { userId, pokemonId } = req.body;
+
+    try {
+        const { usersCollection } = await connectToDatabase();
+
+        const updateResult = await usersCollection.updateOne(
+            { _id: new ObjectId(userId) },
+            { $set: { currentPokemon: parseInt(pokemonId, 10) } }
+        );
+
+        if (updateResult.modifiedCount > 0) {
+            res.redirect(`/owned-pokemon-details/${pokemonId}`);
+        } else {
+            res.status(500).render('error', { title: 'Error', message: 'Error setting current Pokémon' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).render('error', { title: 'Error', message: 'Error setting current Pokémon' });
     }
 });
 

@@ -6,7 +6,6 @@ import { PokemonStat, OwnedPokemon } from "../interface";
 
 const router = express.Router();
 
-// Define the starter Pokémon data
 const starterPokemonStats: Record<number, PokemonStat[]> = {
     1: [
         { name: 'hp', base_stat: 45 },
@@ -72,7 +71,8 @@ router.post("/", async (req: Request, res: Response) => {
         await client.db("YusRiz").collection("Users").insertOne({
             username: Username,
             password: hashedPassword,
-            ownedPokemon: starterPokemon // Add the starter Pokémon to the new user
+            ownedPokemon: starterPokemon,
+            currentPokemon: null // Initially, no Pokémon is marked as current
         });
         res.redirect("/login");
     } catch (error) {
