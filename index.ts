@@ -1,14 +1,16 @@
+// index.ts
+
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import path from "path";
-import session from 'express-session';
-import { connectToDatabase } from './database';
+import session from "express-session";
+import { connectToDatabase } from "./database";
 import pokemonRoutes from "./routes/pokemon-overview";
 import loginRoute from "./routes/login";
 import signupRoute from "./routes/signup";
 import compareRoute from "./routes/compare";
 import guessRoute from "./routes/guess";
-import ownedPokemonRoute from './routes/owned-pokemon';
+import ownedPokemonRoute from "./routes/owned-pokemon";
 import setCurrentPokemonRoute from "./routes/set-current-pokemon";
 import { setCurrentPokemon } from "./middleware/currentPokemon";
 
@@ -20,15 +22,17 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-app.set('views', path.join(__dirname, "views"));
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.set("views", path.join(__dirname, "views"));
+app.use("/assets", express.static(path.join(__dirname, "assets")));
 
-app.use(session({
-    secret: 'your-secret-key',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false }
-}));
+app.use(
+    session({
+        secret: "your-secret-key",
+        resave: false,
+        saveUninitialized: false,
+        cookie: { secure: false }
+    })
+);
 
 app.use(setCurrentPokemon);
 
@@ -78,12 +82,7 @@ app.get("/notavailable", (req, res) => {
     });
 });
 
-app.get("/ownpokemon", (req, res) => {
-    res.render("ownpokemon", {
-        title: "Own Pokémon Page"
-    });
-});
 
 app.listen(app.get("port"), () => {
-    console.log("Server started on http://localhost:" + app.get('port'));
+    console.log("Server started on http://localhost:" + app.get("port"));
 });
